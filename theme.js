@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!target) return;
             e.preventDefault();
             target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            target.classList.add('highlight-flash');
+            setTimeout(() => target.classList.remove('highlight-flash'), 2500);
             history.pushState(null, '', '#' + id);
         });
     });

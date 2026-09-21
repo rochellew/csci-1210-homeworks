@@ -1,11 +1,16 @@
+/************************************************************/
 /* Styles for the instructions pages (index.html, hw3.html) */
+/************************************************************/
 
+/* light mode by default */
 :root {
     --banner-bg: #ced4da;
+    --flash-color: #6b5b00;
 }
 
 [data-bs-theme="dark"] {
     --banner-bg: #16181b;
+    --flash-color: #fff3a0;
 }
 
 .site-banner {
@@ -35,6 +40,20 @@ figcaption {
     font-style: italic;
     font-size: 0.875rem;
     color: var(--bs-secondary-color);
+}
+
+.highlight-flash {
+    animation: flash-bg 2.5s ease;
+}
+
+@keyframes flash-bg {
+    from {
+        background-color: var(--flash-color);
+    }
+
+    to {
+        background-color: transparent;
+    }
 }
 
 .screenshots {
