@@ -1,0 +1,83 @@
+/* Styles for the instructions pages (index.html, hw3.html) */
+
+:root {
+    --banner-bg: #ced4da;
+}
+
+[data-bs-theme="dark"] {
+    --banner-bg: #16181b;
+}
+
+.site-banner {
+    background-color: var(--banner-bg);
+}
+
+.page-title {
+    display: inline-block;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    border-bottom: 4px solid #0d6efd;
+    padding-bottom: 0.35rem;
+    margin-bottom: 0.5rem;
+}
+
+footer small {
+    opacity: 0.85;
+}
+
+figure {
+    margin: 0;
+}
+
+figcaption {
+    text-align: center;
+    margin-top: 1rem;
+    font-style: italic;
+    font-size: 0.875rem;
+    color: var(--bs-secondary-color);
+}
+
+.screenshots {
+    background-color: var(--bs-secondary-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.screenshots .carousel-item img {
+    height: 420px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.screenshots {
+    --bs-carousel-control-opacity: 0.9;
+}
+
+.screenshots .carousel-control-prev-icon,
+.screenshots .carousel-control-next-icon {
+    filter: invert(1);
+}
+
+.screenshots .carousel-indicators [data-bs-target] {
+    background-color: #0d6efd;
+    opacity: 0.6;
+}
+
+.screenshots .carousel-indicators .active {
+    opacity: 1;
+}
+
+#theme-toggle {
+    border: 1px solid var(--bs-border-color);
+    background-color: transparent;
+}
+
+#theme-toggle-icon {
+    transition: transform 0.3s ease;
+}
+
+#theme-toggle-icon.is-dark {
+    transform: rotate(180deg);
+}

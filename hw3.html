@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW3: Personal Gallery Page</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="instructions.css">
+    <script src="theme.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg site-banner sticky-top">
+        <div class="container" style="max-width: 800px;">
+            <a class="navbar-brand fw-bold" href="./index.html">CSCI 1210 Homework</a>
+            <div class="d-flex align-items-center">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="./index.html">Home</a>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Homework
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="./hw3.html">HW3: Personal Gallery</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <button id="theme-toggle" type="button" class="btn btn-sm rounded-circle ms-3 p-0 d-flex align-items-center justify-content-center" style="width: 1.75rem; height: 1.75rem;" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg id="theme-toggle-icon" viewBox="0 0 20 20" width="16" height="16" aria-hidden="true">
+                        <circle cx="10" cy="10" r="8.5" fill="#fff" stroke="#000" stroke-width="1"></circle>
+                        <path d="M10 1.5 A8.5 8.5 0 0 1 10 18.5 Z" fill="#000"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5" style="max-width: 800px;">
+
+        <h1 class="page-title">HW3: Personal Gallery Page</h1>
+        <h5>CSCI-1210 Fall 2026</h5>
+        <p class="lead">Build a small 2-page-deep website: one gallery page with four images, each linking to its own info page.</p>
+
+        <div class="alert alert-info">
+            Based on the cohort's suggestion, this assignment is more open-ended than previous ones. You'll make the choices about topic, wording, and images -- the instructions below tell you <em>what</em> the site needs to do, not exactly what to type.
+        </div>
+
+        <hr class="my-4">
+
+        <h2>1. Download the starter code</h2>
+        <p>
+            Download the starter code (<code>hw3.zip</code>) off D2L and unzip it -- this gives you the project folder you'll build everything in for the rest of these steps.
+        </p>
+
+        <h2>2. Pick a topic</h2>
+        <p>
+            Choose four things you want to make a page about -- favorite characters, foods, hobbies, places you want to visit, whatever interests you. You'll build one gallery page linking to four individual info pages, one per item.
+        </p>
+
+        <h2>3. What you're given</h2>
+        <p>Your project folder already contains a starter template:</p>
+        <ul class="list-group mb-4">
+            <li class="list-group-item"><code>hw3.html</code> -- the gallery page. Has a 2&times;2 grid with 4 placeholder image/link/caption blocks already wired up.</li>
+            <li class="list-group-item"><code>page-template.html</code> -- a blank info page. You'll duplicate this file <strong>4 times, once per item</strong>.</li>
+            <li class="list-group-item"><code>style.css</code> -- some starter CSS, already linked from every page. You don't need to touch this (we haven't covered CSS yet!), but feel free to look at it.</li>
+            <li class="list-group-item"><code>images/</code> -- put your optimized images here.</li>
+        </ul>
+
+        <h2>4. Find and optimize your images</h2>
+        <p>
+            Find one image for each of your four items. Remember what we covered on image optimization --resize/compress them before adding them to the project so the page loads quickly. Save all four into the <code>images/</code> folder.
+        </p>
+
+        <div class="alert alert-light border">
+            <strong>Tip &mdash; portrait vs. landscape images:</strong> Don't worry if your four images are different shapes (some tall, some wide). <code>style.css</code> already includes a rule that makes all gallery images display at the same size and shape, so your grid will look even no matter what you pick. If you want more control over which part of the photo shows, you can crop it yourself in GIMP first (see below) &mdash; but it's not required.
+        </div>
+
+        <h3>Optimizing images in GIMP</h3>
+        <p>Two settings do most of the work of shrinking a photo down to something web-friendly:</p>
+        <ol>
+            <li>
+                <strong>Resize it.</strong> <code>Image &rarr; Scale Image</code>. Photos straight off a phone or camera are usually way bigger than they need to be on a webpage. Set the width to something reasonable, e.g. <strong>800px wide</strong>, and GIMP will scale the height to match. This is the single biggest factor in file size.
+            </li>
+            <li>
+                <strong>Set Quality on export.</strong> <code>File &rarr; Export As&hellip;</code>, choose <code>.jpg</code>, and click Export. A dialog pops up with a <strong>Quality</strong> slider (0&ndash;100). Somewhere around <strong>75&ndash;85</strong> usually looks nearly identical to the original but is a fraction of the file size &mdash; drag it down and watch the "Preview" file size estimate in the dialog shrink.
+            </li>
+        </ol>
+        <p class="alert alert-info">
+            Optional: if you'd rather crop instead of relying on the CSS above, use the <strong>Crop Tool</strong> (<kbd>Shift</kbd>+<kbd>C</kbd>) before exporting.
+        </p>
+
+        <h2>5. Build the gallery page (<code>hw3.html</code>)</h2>
+        <p>For each of the 4 grid items, update:</p>
+        <ul>
+            <li>The <code>&lt;img&gt;</code> <code>src</code> -- point it at your image in <code>images/</code></li>
+            <li>The <code>&lt;img&gt;</code> <code>alt</code> text -- describe the image</li>
+            <li>The caption <code>&lt;p&gt;</code> text below the image</li>
+            <li>The <code>&lt;a href="..."&gt;</code> -- this should point to the info page you'll create for that item (see step 6)</li>
+        </ul>
+        <p>Also update the page <code>&lt;title&gt;</code> and the heading/intro text in the header.</p>
+
+        <h2>6. Build your four info pages</h2>
+        <p>
+            Duplicate <code>page-template.html</code> four times. Rename each copy to match one of the <code>href</code> values you set in step 5 -- for example, if a gallery link points to <code>denmark.html</code>, your duplicated file should be named <code>denmark.html</code>.
+        </p>
+        <p>In each info page, update:</p>
+        <ul>
+            <li>The <code>&lt;title&gt;</code> and <code>&lt;h1&gt;</code></li>
+            <li>The <code>&lt;img&gt;</code> <code>src</code> and <code>alt</code> (can reuse the same image or use a different one)</li>
+            <li>The paragraph -- a few sentences about that item</li>
+            <li>On <strong>one</strong> of the four pages: a list (see the requirement below)</li>
+        </ul>
+        <p>Leave the "&larr; Back to gallery" link as-is -- it should already point back to <code>hw3.html</code>.</p>
+
+        <div class="alert alert-info">
+            <strong>Requirement &mdash; include a list:</strong>
+            <br>
+            <p>
+                At least <strong>one</strong> of your four info pages needs to include a list -- an ordered list (<code>&lt;ol&gt;</code>), an unordered list (<code>&lt;ul&gt;</code>), or a definition list (<code>&lt;dl&gt;</code>). Use whichever fits that item naturally (steps, ingredients, specs, related terms, etc.) -- you only need it on one page, not all four.
+            </p>
+            <p>
+                <code>page-template.html</code> has a commented-out example you can uncomment and edit.
+            </p>
+        </div>
+
+        <div class="alert alert-secondary">
+            <strong>Note &mdash; relative paths:</strong> Every <code>src</code> and <code>href</code> in this project (<code>images/your-image-1.jpg</code>, <code>page1.html</code>, etc.) is a <strong>relative path</strong> &mdash; it points to another file based on where the current file lives, not a full web address. That's why <code>hw3.html</code> can find <code>images/your-image-1.jpg</code>: it looks for an <code>images</code> folder <em>right next to itself</em>. This only keeps working if you preserve the same folder structure everywhere you put this project &mdash; on your computer, and later when you upload it. If <code>images/</code> ends up in the wrong place relative to your HTML files (or doesn't get uploaded at all), your images and links will break even though the code itself is correct.
+        </div>
+
+        <h2>7. Test it</h2>
+        <p>
+            Open <code>hw3.html</code> in your browser. Click each of the 4 images and confirm it takes you to the right info page, and that the "Back to gallery" link on each info page brings you back.
+        </p>
+
+        <hr class="my-4">
+
+        <h3>About the tools you're using</h2>
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Including Bootstrap</h5>
+                    <p class="card-text">
+                        You don't need npm, Node, or any install step. The template already includes Bootstrap the simple way -- a <code>&lt;link&gt;</code> tag in the <code>&lt;head&gt;</code> pointing at a CDN (a copy of thefile hosted on a public server):
+                    </p>
+
+                    <code class="p-2" d-inline-block>
+                        &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+                    </code>
+                    <br><br>
+                    <p class="card-text mb-0">
+                        That's it -- as long as this tag is in a page's <code>&lt;head&gt;</code>, you can use any Bootstrap class in that page.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Bootstrap classes used in the template</h5>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Class</th>
+                                <th>What it does</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>container</code></td>
+                                <td>Adds sensible margins/padding around content</td>
+                            </tr>
+                            <tr>
+                                <td><code>row</code> / <code>col-6</code></td>
+                                <td>Lay elements out side-by-side in a grid (two <code>col-6</code>s per row = 2 columns)</td>
+                            </tr>
+                            <tr>
+                                <td><code>img-fluid</code></td>
+                                <td>Makes an image resize to fit its container</td>
+                            </tr>
+                            <tr>
+                                <td><code>rounded</code></td>
+                                <td>Rounds the corners of an element</td>
+                            </tr>
+                            <tr>
+                                <td><code>text-center</code></td>
+                                <td>Centers text/inline content</td>
+                            </tr>
+                            <tr>
+                                <td><code>mt-2</code>, <code>mb-4</code>, <code>py-3</code>, <code>py-4</code></td>
+                                <td>Margin/padding utilities (t=top, b=bottom, y=top+bottom); number = spacing amount</td>
+                            </tr>
+                            <tr>
+                                <td><code>d-block</code></td>
+                                <td>Forces an element to display as a block (needed so <code>mx-auto</code> below can center it)</td>
+                            </tr>
+                            <tr>
+                                <td><code>mx-auto</code></td>
+                                <td>Centers a block-level element horizontally</td>
+                            </tr>
+                            <tr>
+                                <td><code>w-50</code></td>
+                                <td>Sets an element's width to 50% of its container</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="card-text mb-0" align="center">
+                        Feel free to use any other <a href="https://getbootstrap.com/docs/5.3/utilities/spacing/" target="_blank" rel="noopener">Bootstrap utility class</a> too.
+                    </p>
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <h5 class="card-title">What the heck's a <code>&lt;div&gt;</code>?</h5>
+                <br>
+                <p class="card-text">
+                    You'll notice the grid in <code>hw3.html</code> uses <code>&lt;div&gt;</code> tags. We haven't formally covered <code>&lt;div&gt;</code> yet -- for now, just know it's a generic container with no meaning of its own, used to group other elements together (here, so Bootstrap's grid classes have something to attach to).
+                </p>
+                <p>
+                    You don't need to add any new <code>&lt;div&gt;</code>s for this assignment, just edit the content inside the ones already there.
+                </p>
+                <p align="center">
+                    If you're curious, read more here:
+                    <a href="https://www.w3schools.com/tags/tag_div.asp" target="_blank" rel="noopener">w3schools: The div element</a>.
+                </p>
+            </div>
+
+            <hr class="my-4">
+
+            <h2>Uploading your files (FileZilla &rarr; csci1210.com)</h2>
+
+            <div class="alert alert-warning">
+                <p>Make sure that your work is uploaded to the right place. Your URL should look like the following:</p>
+
+                <p id="url-warning" align="center">
+                    <code>
+                        http://USERNAME.www.csci1210.com/homework/hw3/hw3.html
+                    </code>
+                </p>
+                <p>Replace 'USERNAME' with your lowercase ETSU username. <strong>If the link doesn't take me to your page, I can't grade it.</strong></p>
+            </div>
+
+
+
+            <p>Once everything works locally, upload your whole project folder to the class server:</p>
+            <ol>
+                <li>Connect to the server in FileZilla using your course credentials.</li>
+                <li>
+                    Navigate to <code>/homework/</code> on the remote (right-hand) side.
+                </li>
+                <li>
+                    Either create a folder called <code>hw3</code> on the remote side OR name your folder on your device <code>hw3</code> that contains your files and upload the whole folder.
+                </li>
+                <li>
+                    Upload <code>hw3.html</code>, <code>page-template.html</code> (or rather, your four renamed info pages), <code>style.css</code>, and the entire <code>images/</code> folder &mdash; <strong>keep the same folder structure</strong> you have locally (see the relative paths note above). Don't upload <code>page-template.html</code> itself if you've already renamed your copies of it.
+                </li>
+                <li>
+                    Visit your page at the corresponding csci1210.com URL and click through it exactly like you did locally to verify that everything works.
+                </li>
+
+            </ol>
+
+            <div class="alert alert-warning">
+                <strong>Warning &mdash; check the server, not just your computer:</strong> A page that works when you double-click <code>hw3.html</code> on your own machine can still break once uploaded, usually because of a relative path issue (see the note above) or a missing file. Always do your final check by visiting the live csci1210.com URL, not just your local file.
+            </div>
+
+            <hr class="my-4">
+
+            <h2>Homework Checklist</h2>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Quick checklist</h5>
+                    <p class="card-text text-muted">A high-level recap of everything above &mdash; check these off to make sure you've got everything.</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-1">
+                        <label class="form-check-label" for="check-1">Found and optimized (resized/compressed) 4 images</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-2">
+                        <label class="form-check-label" for="check-2">Built <code>hw3.html</code> (title, images, alt text, captions, and hrefs for all 4 items)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-3">
+                        <label class="form-check-label" for="check-3">Copied &amp; renamed <code>page-template.html</code> into 4 info pages, matching the hrefs in <code>hw3.html</code></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-4">
+                        <label class="form-check-label" for="check-4">Filled in each info page (title, h1, image, paragraph) and kept the "Back to gallery" link pointing to <code>hw3.html</code></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-5">
+                        <label class="form-check-label" for="check-5">At least one info page includes a list (<code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, or <code>&lt;dl&gt;</code>)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-6">
+                        <label class="form-check-label" for="check-6">Tested everything locally &mdash; all 4 images link out and back correctly</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-7">
+                        <label class="form-check-label" for="check-7">Uploaded the whole <code>hw3</code> folder (<code>images/</code> with your 4 images, <code>hw3.html</code>, and your 4 renamed info pages) &mdash; same structure as local</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-8">
+                        <label class="form-check-label" for="check-8">Verified the live URL works and is error-free (checked the validator badges)</label>
+                    </div>
+                </div>
+            </div>
+
+            <h2>My Screenshots</h2>
+            <p>See below for screenshots from my solution to verify that your pages look correct. Note that I didn't get the full window that includes the verification badges. You should have those at the bottom-right.</p>
+            <div class="screenshots">
+                <div id="screenshotsCarousel" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <figure class="mb-0">
+                                <img src="./images/gallery.png" class="d-block" alt="Homework 3 | Home Page">
+                                <figcaption>HW3 | Home Page</figcaption>
+                            </figure>
+                        </div>
+                        <div class="carousel-item">
+                            <figure class="mb-0">
+                                <img src="./images/page.png" class="d-block" alt="Homework 3 | Info Page">
+                                <figcaption>HW3 | Info Page</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#screenshotsCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#screenshotsCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#screenshotsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#screenshotsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Submitting to D2L</h2>
+
+            <ol>
+                <li>
+                    Verify that your page is live on the server and that it's error-free by right-clicking the icons at the bottom-right of the screen.
+                    <ul>
+                        <li>
+                            Again, make SURE you're looking at the URL to make sure it's not a file path. See <a href="#url-warning">above</a> for what your URL should look like.
+                        </li>
+                        <li>
+                            Those icons come from a small validation script (<code>/js/w3c.js</code>) already included near the bottom of your starter templates &mdash; you've used a version of this before. It checks your live page against the W3C HTML/CSS validators and shows a pass/fail badge. It only works once your page is uploaded; it won't do anything when you open the file locally.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Copy the URL for your home page (<code>hw3.html</code>).
+                </li>
+                <li>
+                    Paste the URL in the text drop box on D2L by the specified due date and time.
+                </li>
+            </ol>
+
+    </div>
+
+    <footer class="site-banner text-center py-3 mt-4">
+        <small>&copy; William H. Rochelle | CSCI 1210 | 2026 | All rights reserved.</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>
