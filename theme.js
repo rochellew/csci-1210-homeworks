@@ -44,3 +44,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+document.addEventListener('show.bs.modal', function (event) {
+    var trigger = event.relatedTarget;
+    var modalImg = document.querySelector('#modalImg');
+    var modalLabel = document.querySelector('#imgModalLabel');
+    modalImg.src = trigger.src;
+    modalImg.alt = trigger.alt;
+    modalLabel.textContent = `Screenshot -- ${trigger.alt}`;
+});
