@@ -28,3 +28,19 @@ document.addEventListener('DOMContentLoaded', function () {
         updateThemeToggleUI();
     });
 });
+
+// In-page anchor links (e.g. <a href="#url-warning">) scroll their target
+// to the vertical center of the viewport instead of the very top.
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+            var id = link.getAttribute('href').slice(1);
+            if (!id) return;
+            var target = document.getElementById(id);
+            if (!target) return;
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            history.pushState(null, '', '#' + id);
+        });
+    });
+});
