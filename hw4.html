@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW4: Trading Card Collection</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="instructions.css">
+    <script src="theme.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg site-banner sticky-top">
+        <div class="container" style="max-width: 800px;">
+            <a class="navbar-brand fw-bold" href="./index.html">CSCI 1210 Homework</a>
+            <div class="d-flex align-items-center">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="./index.html">Home</a>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Homework
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="./hw3.html">HW3: Personal Gallery</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="./hw4.html">HW4: Trading Card Collection</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <button id="theme-toggle" type="button" class="btn btn-sm rounded-circle ms-3 p-0 d-flex align-items-center justify-content-center" style="width: 1.75rem; height: 1.75rem;" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg id="theme-toggle-icon" viewBox="0 0 20 20" width="16" height="16" aria-hidden="true">
+                        <circle cx="10" cy="10" r="8.5" fill="#fff" stroke="#000" stroke-width="1"></circle>
+                        <path d="M10 1.5 A8.5 8.5 0 0 1 10 18.5 Z" fill="#000"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5" style="max-width: 800px;">
+
+        <h1 class="page-title">HW4: Trading Card Collection</h1>
+        <h5>CSCI-1210 Fall 2026</h5>
+        <p class="lead">Design a page of trading cards about anything you like, and style every bit of it yourself with CSS.</p>
+
+        <div class="alert alert-info">
+            Like HW3, this one is open-ended. You pick the topic, the cards, and the look. The instructions below tell you <em>what</em> your page needs to show off, not exactly how to do it. There's no Bootstrap this time &mdash; every style on your page comes from CSS that <strong>you</strong> wrote.
+        </div>
+
+        <hr class="my-4">
+
+        <h2>1. Download the starter code</h2>
+        <p>
+            <a href="https://github.com/rochellew/csci-1210-homeworks/releases/download/hw4/hw4.zip">Download the starter code</a> off GitHub and unzip it -- this gives you the project folder you'll build everything in for the rest of these steps.
+        </p>
+        <div>
+            <p class="alert alert-warning">
+                Make sure that you unzip the folder to <code>/hw4</code> and store it somewhere that makes sense, right next to your <code>hw3</code> folder.
+            </p>
+        </div>
+
+        <h2>2. Pick a theme for your collection</h2>
+        <p>
+            Think Pok&eacute;mon cards, sports cards, Magic cards -- but about something <em>you</em> care about. A few ideas to get you going:
+        </p>
+        <ul>
+            <li>Your pets (or your friends' pets)</li>
+            <li>Characters from a game, show, or book series</li>
+            <li>Snacks, restaurants, or coffee drinks, ranked</li>
+            <li>Athletes, bands, cars, plants, dinosaurs...</li>
+            <li>A set of creatures you make up yourself</li>
+        </ul>
+        <p>
+            Your collection should have <strong>at least 6 cards</strong>. Each card should have a name, an image, and a bit of info about the thing on it -- stats, a description, fun facts, whatever fits your theme.
+        </p>
+
+        <h2>3. What you're given</h2>
+        <p>Your project folder already contains a starter template:</p>
+        <ul class="list-group mb-4">
+            <li class="list-group-item"><code>hw4.html</code> -- a page laid out with <code>&lt;div&gt;</code>s: a header, a nav bar, a content section for your cards, and a footer. It includes <strong>one example card</strong> to show you how a card can be put together, plus a <strong>mystery card</strong> (see step 4).</li>
+            <li class="list-group-item"><code>css/style.css</code> -- your stylesheet, already linked from <code>hw4.html</code>. It has the required comment block at the top, a small section of <strong>provided layout rules</strong> that line your cards up in rows, and plenty of room for your own rules.</li>
+            <li class="list-group-item"><code>images/</code> -- put your optimized images here.</li>
+        </ul>
+
+        <div class="alert alert-light border">
+            <strong>Tip &mdash; the provided layout rules:</strong> By default, <code>&lt;div&gt;</code>s stack on top of each other, which would make your collection one very tall column of cards. The provided section of <code>style.css</code> uses some CSS we haven't covered yet to wrap them into rows instead. You can leave that section alone -- we'll dig into layout like that in CSCI 1720.
+        </div>
+
+        <h2>4. Cascade Detective 🔍</h2>
+        <p>
+            Before you change <em>anything</em>, open <code>hw4.html</code> in VS Code (not the browser yet!) and find the mystery card. Its background color is set in <strong>three different places</strong>:
+        </p>
+        <ul>
+            <li>In <code>css/style.css</code> (external)</li>
+            <li>In the <code>&lt;style&gt;</code> element in the <code>&lt;head&gt;</code> of <code>hw4.html</code> (embedded)</li>
+            <li>In a <code>style</code> attribute on the card itself (inline)</li>
+        </ul>
+        <p>Your job is to figure out which one wins, and why:</p>
+        <ol>
+            <li><strong>Predict.</strong> Read all three rules in the code first. Before you look at the page, write down which color you think the card will be.</li>
+            <li><strong>Check.</strong> Look at the page. Were you right?</li>
+            <li><strong>Experiment.</strong> Delete the inline <code>style</code> attribute, save, and refresh. What color is it now? Then delete the embedded rule, save, and refresh again.</li>
+            <li><strong>Explain.</strong> In <code>css/style.css</code>, right above the <code>#mystery</code> rule, write a CSS comment with your prediction, what actually happened, and <em>why</em> in your own words.</li>
+        </ol>
+
+        <div class="alert alert-info">
+            <strong>Bonus question:</strong> Did the mystery card's <em>text</em> color ever change while you were doing this? Why or why not? Add your answer to the same comment.
+        </div>
+
+        <p>
+            When you're done, the mystery card is yours -- restyle it to fit your collection, turn it into a "card back," leave it as-is, or delete it (along with the embedded <code>&lt;style&gt;</code>). Just keep your comment.
+        </p>
+
+        <h2>5. Find and optimize your images</h2>
+        <p>
+            Find one image for each card. Same as HW3 -- resize/compress them in GIMP before adding them to the project so the page loads quickly, and save them into the <code>images/</code> folder.
+        </p>
+        <p class="alert alert-info">
+            Need a refresher? The <a href="./hw3.html">HW3 instructions</a> have a section on optimizing images in GIMP.
+        </p>
+
+        <h2>6. Build your cards (<code>hw4.html</code>)</h2>
+        <p>
+            Use the example card as a guide, but you don't have to copy it exactly -- add, remove, or rearrange whatever you want inside your cards. Also update the page <code>&lt;title&gt;</code>, the header, the nav bar, and the footer so they fit your theme.
+        </p>
+        <p>
+            Point your nav links at 2&ndash;3 real sites related to your theme -- an official site, a wiki, somewhere to watch/read/buy it, etc.
+        </p>
+        <p>
+            Along the way, use <code>class</code> and <code>id</code> attributes to set yourself up for styling:
+        </p>
+
+        <div class="alert alert-info">
+            <strong>Requirement &mdash; classes and an id:</strong>
+            <br>
+            <p>
+                Group your cards using <strong>classes</strong>. What the groups are is up to you -- rarity (common, rare, legendary...), type (fire, water...), team, flavor, anything that makes sense for your collection. At least one card should have <strong>more than one class</strong>.
+            </p>
+            <p class="mb-0">
+                Give <strong>one</strong> element on the page an <strong>id</strong> and style it so it stands out -- your favorite card, a "card of the day," your header, etc. Remember that an id can only be used <em>once</em> per page.
+            </p>
+        </div>
+
+        <h2>7. Style your collection (<code>css/style.css</code>)</h2>
+        <p>
+            This is where your page comes to life. All of your styling (other than the Cascade Detective bits) should go in <code>css/style.css</code>. How it looks is completely up to you, but your stylesheet needs to show off the following:
+        </p>
+
+        <div class="alert alert-info">
+            <strong>Requirement &mdash; what your CSS needs to include:</strong>
+            <ul class="mb-0 mt-2">
+                <li>The required comment block at the top of <code>style.css</code>, filled in with your info</li>
+                <li>Comments explaining what the different sections of your CSS are for</li>
+                <li>Rules that use <strong>element</strong>, <strong>class</strong>, and <strong>id</strong> selectors</li>
+                <li>Each card group looks different from the others, based on its class(es)</li>
+                <li>A variety of <strong>text</strong> properties (font, size, weight, alignment, spacing, etc.)</li>
+                <li>At least one <strong>background image</strong> somewhere on the page</li>
+                <li>Colors written in all four formats we covered: <strong>named</strong>, <strong>hex</strong>, <strong><code>rgb()</code></strong>, and <strong><code>rgba()</code></strong></li>
+            </ul>
+        </div>
+
+        <div class="alert alert-secondary">
+            <strong>Note &mdash; relative paths in CSS:</strong> A path inside a CSS file is relative to <em>the CSS file</em>, not to the HTML page. Since <code>style.css</code> lives in the <code>css/</code> folder, a background image in <code>images/</code> is one folder <strong>up</strong> and then over: <code>url("../images/your-image.jpg")</code>. The <code>../</code> means "go up one folder." If your background image isn't showing up, this is almost always why.
+        </div>
+
+        <h2>8. Test it</h2>
+        <p>
+            Open <code>hw4.html</code> in your browser and check that all of your images and styles show up. Try resizing the browser window -- your cards should wrap onto new rows instead of running off the side of the page.
+        </p>
+
+        <hr class="my-4">
+
+        <h3>About the tools you're using</h3>
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Linking your stylesheet</h5>
+                    <p class="card-text">
+                        <code>hw4.html</code> is already linked to your stylesheet with a <code>&lt;link&gt;</code> tag in the <code>&lt;head&gt;</code>. Since <code>style.css</code> is inside the <code>css</code> folder, the path includes the folder name:
+                    </p>
+
+                    <code class="p-2" d-inline-block>
+                        &lt;link rel="stylesheet" href="css/style.css"&gt;
+                    </code>
+                    <br><br>
+                    <p class="card-text mb-0">
+                        If your page suddenly looks completely unstyled, check that this tag is still there and that the path matches where <code>style.css</code> actually lives.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Selector cheat sheet</h5>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Selector</th>
+                                <th>What it selects</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>p</code></td>
+                                <td>Every <code>&lt;p&gt;</code> element on the page</td>
+                            </tr>
+                            <tr>
+                                <td><code>.rare</code></td>
+                                <td>Every element with <code>class="rare"</code> (along with any other classes it has)</td>
+                            </tr>
+                            <tr>
+                                <td><code>p.rare</code></td>
+                                <td>Only <code>&lt;p&gt;</code> elements with <code>class="rare"</code> -- more specific</td>
+                            </tr>
+                            <tr>
+                                <td><code>#featured</code></td>
+                                <td>The one element with <code>id="featured"</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="card-text mb-0">
+                        To give an element more than one class, separate them with spaces: <code>&lt;div class="card rare holo"&gt;</code>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Color formats</h5>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Format</th>
+                                <th>Example</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Named</td>
+                                <td><code>rebeccapurple</code></td>
+                                <td>17 standard names plus ~128 extras</td>
+                            </tr>
+                            <tr>
+                                <td>Hex</td>
+                                <td><code>#663399</code></td>
+                                <td>Two hex digits each for red, green, blue</td>
+                            </tr>
+                            <tr>
+                                <td>RGB</td>
+                                <td><code>rgb(102, 51, 153)</code></td>
+                                <td>Each value is 0&ndash;255</td>
+                            </tr>
+                            <tr>
+                                <td>RGBA</td>
+                                <td><code>rgba(102, 51, 153, 0.5)</code></td>
+                                <td>Last value is opacity, from 0.0 (invisible) to 1.0 (solid)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="card-text mb-0" align="center">
+                        All four of those are the same purple. Browse more on <a href="https://www.w3schools.com/colors/colors_names.asp" target="_blank" rel="noopener">w3schools: Color Names</a>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <h5 class="card-title">Looking for more CSS properties?</h5>
+                <br>
+                <p class="card-text">
+                    The lecture covered text, background, and color properties, and that's all you need for this assignment. If you want to go further (borders, rounded corners, shadows...), go for it! Just make sure your page still validates.
+                </p>
+                <p align="center">
+                    A good place to look:
+                    <a href="https://www.w3schools.com/cssref/index.php" target="_blank" rel="noopener">w3schools: CSS Reference</a>.
+                </p>
+            </div>
+
+            <hr class="my-4">
+
+            <h2>Uploading your files (FileZilla &rarr; csci1210.com)</h2>
+
+            <div class="alert alert-warning">
+                <p>Make sure that your work is uploaded to the right place. Your URL should look like the following:</p>
+
+                <p id="url-warning" align="center">
+                    <code>
+                        http://USERNAME.www.csci1210.com/homework/hw4/hw4.html
+                    </code>
+                </p>
+                <p>Replace 'USERNAME' with your lowercase ETSU username. <strong>If the link doesn't take me to your page, I can't grade it.</strong></p>
+            </div>
+
+
+
+            <p>Once everything works locally, upload your whole project folder to the class server:</p>
+            <ol>
+                <li>Connect to the server in FileZilla using your course credentials.</li>
+                <li>
+                    Navigate to <code>/homework/</code> on the remote (right-hand) side.
+                </li>
+                <li>
+                    Either create a folder called <code>hw4</code> on the remote side OR name your folder on your device <code>hw4</code> that contains your files and upload the whole folder.
+                </li>
+                <li>
+                    Upload <code>hw4.html</code>, the entire <code>css/</code> folder, and the entire <code>images/</code> folder &mdash; <strong>keep the same folder structure</strong> you have locally.
+                </li>
+                <li>
+                    Visit your page at the corresponding csci1210.com URL and check it exactly like you did locally to verify that everything works.
+                </li>
+
+            </ol>
+
+            <div class="alert alert-warning">
+                <strong>Warning &mdash; check the server, not just your computer:</strong> A page that works when you double-click <code>hw4.html</code> on your own machine can still break once uploaded, usually because of a relative path issue or a missing file. If your page shows up with no styling at all, the <code>css/</code> folder probably didn't make it. Always do your final check by visiting the live csci1210.com URL, not just your local file.
+            </div>
+
+            <hr class="my-4">
+
+            <h2>Homework Checklist</h2>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Quick checklist</h5>
+                    <p class="card-text text-muted">A high-level recap of everything above &mdash; check these off to make sure you've got everything.</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-1">
+                        <label class="form-check-label" for="check-1">Solved the Cascade Detective and explained it in a comment in <code>style.css</code> (including the bonus question)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-2">
+                        <label class="form-check-label" for="check-2">Found and optimized (resized/compressed) an image for each card</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-3">
+                        <label class="form-check-label" for="check-3">Built at least 6 cards, each with a name, image, and info</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-4">
+                        <label class="form-check-label" for="check-4">Updated the title, header, nav (with 2&ndash;3 real links), and footer to fit your theme</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-5">
+                        <label class="form-check-label" for="check-5">Grouped cards with classes (at least one card has more than one class) and used one id</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-6">
+                        <label class="form-check-label" for="check-6">Filled in the comment block at the top of <code>style.css</code> and commented your CSS</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-7">
+                        <label class="form-check-label" for="check-7">Styled with element, class, and id selectors, using text properties and at least one background image</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-8">
+                        <label class="form-check-label" for="check-8">Used named, hex, <code>rgb()</code>, and <code>rgba()</code> colors</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-9">
+                        <label class="form-check-label" for="check-9">Uploaded the whole <code>hw4</code> folder (<code>hw4.html</code>, <code>css/</code>, and <code>images/</code>) &mdash; same structure as local</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check-10">
+                        <label class="form-check-label" for="check-10">Verified the live URL works and is error-free (checked the validator badges)</label>
+                    </div>
+                </div>
+            </div>
+
+            <h2>My Solution</h2>
+            <p>Here's a recording of my solution. Yours won't look anything like mine (that's the point!), but it should give you an idea of what a finished collection looks like. Click the video to enlarge it. <strong>You should have both validator badges at the bottom-right</strong>.</p>
+            <div class="screenshots">
+                <figure class="mb-0">
+                    <video src="./images/cards.mp4" class="d-block" aria-label="Homework 4 | Card Collection" autoplay loop muted playsinline data-bs-toggle="modal" data-bs-target="#imgModal" style="cursor:pointer"></video>
+                    <figcaption>HW4 | Card Collection</figcaption>
+                </figure>
+            </div>
+
+            <div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="imgModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" style="max-width: 90vw;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="imgModalLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img id="modalImg" src="" alt="" class="img-fluid d-block mx-auto">
+                            <video id="modalVideo" class="img-fluid d-block mx-auto" autoplay loop muted playsinline hidden></video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Submitting to D2L</h2>
+
+            <ol>
+                <li>
+                    Verify that your page is live on the server and that it's error-free by right-clicking the icons at the bottom-right of the screen.
+                    <ul>
+                        <li>
+                            Again, make SURE you're looking at the URL to make sure it's not a file path. See <a href="#url-warning">above</a> for what your URL should look like.
+                        </li>
+                        <li>
+                            Those icons come from the same validation script (<code>/js/w3c.js</code>) you used in HW3, already included near the bottom of <code>hw4.html</code>. It only works once your page is uploaded; it won't do anything when you open the file locally.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Copy the URL for your page (<code>hw4.html</code>).
+                </li>
+                <li>
+                    Paste the URL in the text drop box on D2L by the specified due date and time.
+                </li>
+            </ol>
+
+    </div>
+
+    <footer class="site-banner text-center py-3 mt-4">
+        <small>&copy; 2026 | William H. Rochelle | CSCI 1210</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>

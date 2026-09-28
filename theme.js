@@ -50,8 +50,25 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('show.bs.modal', function (event) {
     var trigger = event.relatedTarget;
     var modalImg = document.querySelector('#modalImg');
+    var modalVideo = document.querySelector('#modalVideo');
     var modalLabel = document.querySelector('#imgModalLabel');
-    modalImg.src = trigger.src;
-    modalImg.alt = trigger.alt;
-    modalLabel.textContent = `Screenshot -- ${trigger.alt}`;
+    var isVideo = trigger.tagName === 'VIDEO';
+    var label = isVideo ? trigger.getAttribute('aria-label') : trigger.alt;
+
+    // show whichever element matches what was clicked; modalVideo only exists on pages that use a video
+    modalImg.hidden = isVideo;
+    if (modalVideo) {
+        modalVideo.hidden = !isVideo;
+        if (isVideo) {
+            modalVideo.src = trigger.src;
+        } else {
+            modalVideo.removeAttribute('src');
+            modalVideo.load();
+        }
+    }
+    if (!isVideo) {
+        modalImg.src = trigger.src;
+        modalImg.alt = trigger.alt;
+    }
+    modalLabel.textContent = `Screenshot -- ${label}`;
 });

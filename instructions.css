@@ -70,6 +70,11 @@ figcaption {
     object-fit: cover;
 }
 
+.screenshots video {
+    width: 100%;
+    border-radius: 0.25rem;
+}
+
 .screenshots {
     --bs-carousel-control-opacity: 0.9;
 }
