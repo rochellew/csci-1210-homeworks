@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW5: Stat Sheet Showdown</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="instructions.css">
+    <script src="theme.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg site-banner sticky-top">
+        <div class="container" style="max-width: 800px;">
+            <a class="navbar-brand fw-bold" href="./index.html">CSCI 1210 Homework</a>
+            <div class="d-flex align-items-center">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="./index.html">Home</a>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Homework
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="./hw3.html">HW3: Personal Gallery</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="./hw4.html">HW4: Trading Card Collection</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="./hw5.html">HW5: Stat Sheet Showdown</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <button id="theme-toggle" type="button" class="btn btn-sm rounded-circle ms-3 p-0 d-flex align-items-center justify-content-center" style="width: 1.75rem; height: 1.75rem;" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg id="theme-toggle-icon" viewBox="0 0 20 20" width="16" height="16" aria-hidden="true">
+                        <circle cx="10" cy="10" r="8.5" fill="#fff" stroke="#000" stroke-width="1"></circle>
+                        <path d="M10 1.5 A8.5 8.5 0 0 1 10 18.5 Z" fill="#000"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5" style="max-width: 800px;">
+
+        <h1 class="page-title">HW5: Stat Sheet Showdown</h1>
+        <h5>CSCI-1210 Fall 2026</h5>
+        <p class="lead">Settle an argument with data. Build a page that ranks a roster of your choosing in two HTML tables, then style the whole thing yourself with CSS and the box model.</p>
+
+        <div class="alert alert-info">
+            Open-ended again &mdash; you pick the roster, the stats, and the look. What's new this time: <strong>tables</strong> (including merged cells), the <strong>box model</strong>, and picking a color palette that actually passes an accessibility check. Like HW4, there's no Bootstrap here: every style on your page comes from CSS that <strong>you</strong> wrote.
+        </div>
+
+        <hr class="my-4">
+
+        <h2>1. Download the starter code</h2>
+        <p>
+            <a href="https://github.com/rochellew/csci-1210-homeworks/releases/download/hw5/hw5.zip">Download the starter code</a> off GitHub and unzip it -- this gives you the project folder you'll build everything in for the rest of these steps.
+        </p>
+        <div>
+            <p class="alert alert-warning">
+                Make sure that you unzip the folder to <code>/hw5</code> and store it somewhere that makes sense, right next to your <code>hw3</code> and <code>hw4</code> folders.
+            </p>
+        </div>
+
+        <h2>2. Pick your roster</h2>
+        <p>
+            You need a set of things that can be <em>compared</em> -- because the whole point of a table is that every row has the same columns. Pick something you'd actually argue about:
+        </p>
+        <ul>
+            <li>Every fast food chicken sandwich within 10 miles of campus</li>
+            <li>Mario Kart characters, Smash fighters, or Pok&eacute;mon starters</li>
+            <li>Star Wars movies, Zelda games, albums by one artist</li>
+            <li>Dog breeds, dinosaurs, planets, roller coasters, energy drinks</li>
+            <li>The cars you'd buy if money were no object (0&ndash;60, MPG, price, cool factor)</li>
+            <li>Your own made-up league of fighters, monsters, or robots</li>
+        </ul>
+        <p>
+            You'll need <strong>at least 6 contenders</strong> and <strong>at least 4 stats</strong> for each one. At least one stat should be a number, so there's something to actually rank by.
+        </p>
+
+        <div class="alert alert-secondary">
+            <strong>Note &mdash; tables are for data, not layout:</strong> Back in the day, people used tables to lay out entire web pages. Don't. A table is for information that naturally belongs in a grid -- a bunch of things that all share the same properties. Your stat sheet qualifies. Your page header does not.
+        </div>
+
+        <h2>3. What you're given</h2>
+        <p>Your project folder already contains a starter template:</p>
+        <ul class="list-group mb-4">
+            <li class="list-group-item"><code>hw5.html</code> -- a page with a header, a nav bar, two table sections, and a footer. It includes a small <strong>example table</strong> to show you the tags in action, plus the <strong>autopsy boxes</strong> (see step 4).</li>
+            <li class="list-group-item"><code>css/style.css</code> -- your stylesheet, already linked from <code>hw5.html</code>. It has the required comment block at the top, the rules for the autopsy boxes, and plenty of room for your own.</li>
+            <li class="list-group-item"><code>images/</code> -- optional this time. If you want a logo, a background image, or little icons in your cells, optimize them in GIMP (same as <a href="./hw3.html">HW3</a>) and drop them here.</li>
+        </ul>
+
+        <h2>4. Box Model Autopsy</h2>
+        <p>
+            Before you build anything, you're going to figure out how big a box <em>really</em> is. Open <code>hw5.html</code> in the browser and find the two <strong>autopsy boxes</strong>. Box A is styled in <code>css/style.css</code> like this:
+        </p>
+        <pre class="code-block"><code>#box-a {
+    width: 300px;
+    padding: 20px;
+    border: 5px solid #333;
+    margin: 30px;
+}</code></pre>
+        <p>Your job:</p>
+        <ol>
+            <li><strong>Predict.</strong> Before you touch DevTools, do the arithmetic on paper. How many pixels wide is Box A on screen? How much horizontal space does it take up <em>including</em> its margin? Write both numbers down.</li>
+            <li><strong>Verify.</strong> Right-click Box A &rarr; <strong>Inspect</strong>. In the <strong>Computed</strong> tab (Chrome/Edge) or the <strong>Layout</strong> tab (Firefox) there's a diagram of the box model with the real numbers in it. Were you right?</li>
+            <li><strong>Collapse.</strong> Box B sits directly below Box A. Box A has a 30px bottom margin; Box B has a 20px top margin. Predict the gap between them, then measure it by hovering over the boxes in the Inspector. Is it 50px? Why not?</li>
+            <li><strong>Explain.</strong> In <code>css/style.css</code>, right above the <code>#box-a</code> rule, write a CSS comment with your predictions, what the Inspector actually said, and <em>why</em> -- in your own words.</li>
+        </ol>
+
+        <div class="alert alert-info">
+            <strong>Bonus question:</strong> Both boxes have a background color. Does the background fill the padding? The border? The margin? Change <code>#box-a</code>'s padding to <code>60px</code>, then change its margin to <code>60px</code>, and watch which one pushes the color around. Add your answer to the same comment.
+        </div>
+
+        <p>
+            Once you've written your comment, the autopsy boxes are yours -- restyle them into something that fits your page, or delete them. Just keep the comment.
+        </p>
+
+        <h2>5. Lock in a color palette</h2>
+        <p>
+            This is the step everybody skips and everybody loses points on. Before you write a single color into your CSS, go pick a real palette:
+        </p>
+        <ul>
+            <li><a href="https://color.adobe.com/create/color-wheel/" target="_blank" rel="noopener">Adobe Color</a> -- spin the wheel, or pull a palette straight out of a photo</li>
+            <li><a href="https://www.paletton.com/" target="_blank" rel="noopener">Paletton</a> -- older-looking, but it will show you which of your combinations are actually readable</li>
+        </ul>
+        <p>
+            Then check your text against its background with the <a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">WebAIM Contrast Checker</a>. The minimum contrast ratio for normal body text is <strong>4.5:1</strong>.
+        </p>
+
+        <div class="alert alert-info">
+            <strong>Requirement &mdash; document your palette:</strong>
+            <p>
+                In the comment block at the top of <code>css/style.css</code>, list the <strong>hex codes</strong> for your palette (3&ndash;5 of them) and one word on where each one gets used -- e.g. <code>#1b3a5c -- table headings</code>.
+            </p>
+            <p class="mb-0">
+                Then add one line with the <strong>contrast ratio</strong> you measured for your main body text against its background, and which tool you measured it with. If it comes in under 4.5:1, go fix your colors -- that's the whole exercise.
+            </p>
+        </div>
+
+        <div class="alert alert-light border">
+            <strong>Why we care:</strong> Roughly 8% of men and 0.5% of women have some form of color vision deficiency -- around 300 million people. Add everybody squinting at a laptop in direct sunlight and low contrast stops being a style choice and starts being the reason people leave your site. "It looks fine on my monitor" is not a design standard.
+        </div>
+
+        <h2>6. Table 1 &mdash; The Stat Sheet</h2>
+        <p>
+            This is the straightforward one: your roster as a grid. Rows are contenders, columns are stats.
+        </p>
+
+        <div class="alert alert-info">
+            <strong>Requirement &mdash; the stat sheet:</strong>
+            <ul class="mb-0 mt-2">
+                <li>At least <strong>6 rows</strong> of contenders and at least <strong>4 stat columns</strong></li>
+                <li>A <strong>heading row</strong> of <code>&lt;th&gt;</code> cells across the top</li>
+                <li>Each contender's <em>name</em> is also a <code>&lt;th&gt;</code> -- it's the heading for its row, not data</li>
+                <li>Real data. Made-up stats for made-up contenders are fine; blank cells and <code>lorem ipsum</code> are not</li>
+                <li>Every row has the same number of cells (count them -- this is the number one way tables break)</li>
+            </ul>
+        </div>
+
+        <h2>7. Table 2 &mdash; The Showdown Grid</h2>
+        <p>
+            Now the fun one. This table has to use <strong>merged cells</strong> -- both <code>colspan</code> <em>and</em> <code>rowspan</code>, at least once each. Pick whichever shape fits your roster:
+        </p>
+        <ul>
+            <li><strong>A bracket.</strong> Eight contenders, quarterfinals &rarr; semifinals &rarr; final. Winners advance by spanning rows.</li>
+            <li><strong>A schedule.</strong> Time slots down the side, stages or rooms across the top, and events that span two slots or two stages.</li>
+            <li><strong>A hall of fame.</strong> Years down the side, grouped under spanned "era" headings, with award categories across the top.</li>
+            <li><strong>A head-to-head grid.</strong> Your roster on both axes, a banner heading spanning the whole top, and merged "N/A" blocks down the diagonal.</li>
+        </ul>
+
+        <div class="alert alert-warning">
+            <strong>Do this on paper first.</strong> Seriously. Sketch the grid, draw in the merged cells, then write <code>&lt;tr&gt;</code> beside each row and <code>&lt;td&gt;</code> above each column. Browsers draw tables <strong>row by row, left to right</strong>, and a cell that spans downward eats a slot out of the <em>next</em> row -- so that row has fewer cells in the code than it looks like it should on screen. Trying to hold all that in your head instead of on paper is how people lose an hour to a table that renders like a car accident.
+        </div>
+
+        <h2>8. Style it (<code>css/style.css</code>)</h2>
+        <p>
+            An unstyled table is genuinely grim: no borders, no breathing room, and columns exactly as wide as whatever the longest cell happens to be. Styling one takes a little more thought than styling a <code>&lt;div&gt;</code>, because four elements are in play -- <code>table</code>, <code>tr</code>, <code>th</code>, and <code>td</code> -- and the rule you want usually belongs on the cell, not on the table.
+        </p>
+
+        <div class="alert alert-info">
+            <strong>Requirement &mdash; what your CSS needs to include:</strong>
+            <ul class="mb-0 mt-2">
+                <li>The comment block at the top of <code>style.css</code>, filled in (including your palette and contrast ratio from step 5)</li>
+                <li>Comments explaining what each section of your CSS is for</li>
+                <li>Rules that use <strong>element</strong>, <strong>class</strong>, and <strong>id</strong> selectors</li>
+                <li><code>border-collapse: collapse</code> on your tables, so you don't get that doubled-up border look</li>
+                <li>A border written with the <strong>shorthand</strong> (<code>border: 2px solid #333;</code>) <em>and</em> at least one written with the three <strong>longhand</strong> properties (<code>border-width</code>, <code>border-style</code>, <code>border-color</code>)</li>
+                <li>At least one border style that <em>isn't</em> <code>solid</code> -- <code>dashed</code>, <code>double</code>, <code>ridge</code>, whatever you like</li>
+                <li><strong>Padding</strong> on your cells (an unpadded table is unreadable), plus all three shorthand forms used somewhere in your sheet: <strong>one value</strong>, <strong>two values</strong>, and <strong>four values</strong></li>
+                <li>At least one block element centered with <code>margin: 0 auto;</code></li>
+                <li><code>&lt;th&gt;</code> cells that clearly look different from <code>&lt;td&gt;</code> cells</li>
+                <li>A <strong>class</strong> that highlights a subset of your cells or rows -- the winner, the champion, the one you'd never order again</li>
+                <li>One <strong>id</strong>, styled so a single element stands out</li>
+                <li>Only colors from your documented palette, and <code>px</code> for your lengths</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-light border">
+            <strong>Tip &mdash; grouping selectors:</strong> A lot of table rules apply to both kinds of cell. You can list selectors separated by a comma to give them all the same rules, then add a more specific rule afterward for just the headings:
+            <pre class="code-block mt-2 mb-0"><code>th, td {
+    border: 1px solid #999;
+    padding: 8px 12px;
+}
+
+th {
+    background-color: #1b3a5c;
+    color: white;
+}</code></pre>
+        </div>
+
+        <h2>9. Test it</h2>
+        <p>
+            Open <code>hw5.html</code> in your browser and look it over:
+        </p>
+        <ul>
+            <li>Do both tables render as clean rectangles, with no cells hanging off the edge and no stray gaps? If not, you have a cell-count problem in one of your rows.</li>
+            <li>Is every bit of text comfortably readable against its background?</li>
+            <li>Resize the window. Does the page still hold together?</li>
+            <li>Turn your screen brightness down and look again. It's a cheap, surprisingly effective contrast test.</li>
+        </ul>
+
+        <hr class="my-4">
+
+        <h3>About the tools you're using</h3>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Table tag cheat sheet</h5>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Tag</th>
+                            <th>What it does</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>&lt;table&gt;</code></td>
+                            <td>Wraps the whole table</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;tr&gt;</code></td>
+                            <td>Table <strong>row</strong> -- one per row, top to bottom</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;td&gt;</code></td>
+                            <td>Table <strong>data</strong> -- one per cell, left to right</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;th&gt;</code></td>
+                            <td>Table <strong>heading</strong> cell. Browsers bold and center it by default</td>
+                        </tr>
+                        <tr>
+                            <td><code>colspan="n"</code></td>
+                            <td>Attribute on a cell: merge it across <em>n</em> columns (horizontally)</td>
+                        </tr>
+                        <tr>
+                            <td><code>rowspan="n"</code></td>
+                            <td>Attribute on a cell: merge it down <em>n</em> rows (vertically)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="card-text mb-0">
+                    Full reference: <a href="https://www.w3schools.com/html/html_tables.asp" target="_blank" rel="noopener">w3schools: HTML Tables</a>.
+                </p>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Box model playground</h5>
+                <p class="card-text">
+                    Drag the sliders and watch where the space goes. <strong>Content</strong> holds your stuff, <strong>padding</strong> pushes the border away from the content, <strong>border</strong> wraps around the padding, and <strong>margin</strong> holds everything else away from the outside. Padding, border, and margin are all <code>0</code> until you say otherwise.
+                </p>
+
+                <div class="bm-demo">
+                    <div class="bm-controls">
+                        <label for="bm-width">Content width &mdash; <output id="bm-width-out">240px</output></label>
+                        <input type="range" class="form-range" id="bm-width" min="80" max="300" step="10" value="240">
+
+                        <label for="bm-padding">Padding &mdash; <output id="bm-padding-out">16px</output></label>
+                        <input type="range" class="form-range" id="bm-padding" min="0" max="48" step="2" value="16">
+
+                        <label for="bm-border">Border width &mdash; <output id="bm-border-out">6px</output></label>
+                        <input type="range" class="form-range" id="bm-border" min="0" max="24" step="1" value="6">
+
+                        <label for="bm-margin">Margin &mdash; <output id="bm-margin-out">24px</output></label>
+                        <input type="range" class="form-range" id="bm-margin" min="0" max="48" step="2" value="24">
+                    </div>
+
+                    <div class="bm-stage">
+                        <div class="bm-layer bm-margin-layer" id="bm-margin-layer">
+                            <span class="bm-tag">margin</span>
+                            <div class="bm-layer bm-border-layer" id="bm-border-layer">
+                                <span class="bm-tag">border</span>
+                                <div class="bm-layer bm-padding-layer" id="bm-padding-layer">
+                                    <span class="bm-tag">padding</span>
+                                    <div class="bm-content" id="bm-content">content</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <pre class="code-block mt-3"><code>#my-box {
+    width: <span id="bm-css-width">240</span>px;
+    padding: <span id="bm-css-padding">16</span>px;
+    border: <span id="bm-css-border">6</span>px solid #0d6efd;
+    margin: <span id="bm-css-margin">24</span>px;
+}</code></pre>
+
+                <p class="card-text mb-1">
+                    <strong>Width of the visible box:</strong>
+                    <output id="bm-math-box">240 + (16 &times; 2) + (6 &times; 2) = 284px</output>
+                </p>
+                <p class="card-text mb-0">
+                    <strong>Horizontal space it occupies:</strong>
+                    <output id="bm-math-total">284 + (24 &times; 2) = 332px</output>
+                </p>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Margin collapse (the one that gets everybody)</h5>
+                <p class="card-text">
+                    Stack two block elements and their margins <em>don't</em> add up. The gap between them is whichever margin is bigger, not the sum of the two:
+                </p>
+                <table class="table table-sm mb-2">
+                    <thead>
+                        <tr>
+                            <th>Top box's bottom margin</th>
+                            <th>Bottom box's top margin</th>
+                            <th>Gap you actually get</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>25px</td>
+                            <td>20px</td>
+                            <td>25px <em>(not 45px)</em></td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>40px</td>
+                            <td>40px</td>
+                        </tr>
+                        <tr>
+                            <td>30px</td>
+                            <td>30px</td>
+                            <td>30px</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="card-text mb-0">
+                    Padding never does this. If you need a gap that always behaves exactly the way you wrote it, padding is the more predictable tool.
+                </p>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">The four ways to write padding, border, and margin</h5>
+                <pre class="code-block"><code>/* 1. One property at a time */
+padding-top: 10px;
+padding-right: 20px;
+padding-bottom: 10px;
+padding-left: 20px;
+
+/* 2. Four values on one line -- clockwise from the top:
+      top, right, bottom, left */
+padding: 10px 20px 10px 20px;
+
+/* 3. Two values -- top/bottom, then right/left */
+padding: 10px 20px;
+
+/* 4. One value -- all four sides */
+padding: 10px;</code></pre>
+                <p class="card-text mb-0">
+                    All four of those produce the same result. <code>margin</code> and <code>border-width</code> work exactly the same way. The clockwise order (<strong>t</strong>op, <strong>r</strong>ight, <strong>b</strong>ottom, <strong>l</strong>eft) is worth memorizing now -- it turns up all over CSS.
+                </p>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Borders need three things</h5>
+                <p class="card-text">
+                    <code>padding</code> and <code>margin</code> work on their own, but a border won't show up until it has a <strong>width</strong>, a <strong>style</strong>, and (ideally) a <strong>color</strong>:
+                </p>
+                <pre class="code-block"><code>/* longhand */
+border-width: 2px;
+border-style: dashed;
+border-color: #c0392b;
+
+/* same thing, shorthand */
+border: 2px dashed #c0392b;</code></pre>
+                <p class="card-text">
+                    Leave the <strong>style</strong> off and you get nothing at all -- that's the usual reason a border "isn't working." Leave the color off and it falls back to black.
+                </p>
+                <p class="card-text mb-0">
+                    Styles to play with: <code>solid</code>, <code>dashed</code>, <code>dotted</code>, <code>double</code>, <code>groove</code>, <code>ridge</code>, <code>inset</code>, <code>outset</code>, <code>none</code>, <code>hidden</code>. The 3D-looking ones take their shading from your <code>border-color</code>. See <a href="https://www.w3schools.com/cssref/pr_border-style.php" target="_blank" rel="noopener">w3schools: border-style</a>.
+                </p>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Spanning cells, worked out</h5>
+                <p class="card-text">
+                    Here's a small schedule with one <code>rowspan</code> and one <code>colspan</code>. Count the cells in each <code>&lt;tr&gt;</code> as you read it:
+                </p>
+                <pre class="code-block"><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Time&lt;/th&gt;
+        &lt;th&gt;Main Stage&lt;/th&gt;
+        &lt;th&gt;Side Stage&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th&gt;7:00&lt;/th&gt;
+        &lt;td rowspan="2"&gt;Headliner (two slots)&lt;/td&gt;
+        &lt;td&gt;Opener&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th&gt;8:00&lt;/th&gt;
+        &lt;!-- no cell here: the rowspan above fills this slot --&gt;
+        &lt;td&gt;DJ set&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td colspan="3"&gt;Fireworks -- everybody outside&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                <p class="card-text mb-2">
+                    The 7:00 row has three cells. The 8:00 row has only <strong>two</strong> in the code, because the <code>rowspan="2"</code> above it already claimed that middle slot. The last row has <strong>one</strong> cell covering all three columns. Rendered, it comes out like this:
+                </p>
+                <table class="table table-sm table-bordered align-middle mb-0 text-center">
+                    <tr>
+                        <th>Time</th>
+                        <th>Main Stage</th>
+                        <th>Side Stage</th>
+                    </tr>
+                    <tr>
+                        <th>7:00</th>
+                        <td rowspan="2" class="table-primary">Headliner<br>(two slots)</td>
+                        <td>Opener</td>
+                    </tr>
+                    <tr>
+                        <th>8:00</th>
+                        <td>DJ set</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="table-warning">Fireworks -- everybody outside</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Fixing column widths</h5>
+                <p class="card-text">
+                    By default a column is exactly as wide as its widest cell, which can look lopsided. You can pin the widths down with <code>&lt;col&gt;</code> tags at the top of the table -- one per column, no closing tag:
+                </p>
+                <pre class="code-block"><code>&lt;table&gt;
+    &lt;col style="width: 120px"&gt;
+    &lt;col style="width: 240px"&gt;
+    &lt;col style="width: 80px"&gt;
+    &lt;tr&gt; ... &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                <p class="card-text mb-0">
+                    This one's optional for the assignment, but it's the quickest fix when a single column is hogging your whole table.
+                </p>
+            </div>
+        </div>
+
+        <div class="alert alert-info">
+            <h5 class="card-title">Want to go further?</h5>
+            <p class="card-text mb-2">
+                Everything required above came out of lecture. If you want to push the page, a few things that play nicely with tables:
+            </p>
+            <ul>
+                <li><code>&lt;caption&gt;</code> as the first thing inside a <code>&lt;table&gt;</code> -- a real title for the table</li>
+                <li><code>scope="col"</code> / <code>scope="row"</code> on your <code>&lt;th&gt;</code> cells, which tells a screen reader which cells a heading governs</li>
+                <li><code>border-radius</code>, <code>box-shadow</code>, and <code>text-transform</code> for a more polished look</li>
+                <li><code>tr:hover</code> to light up whichever row is under the cursor</li>
+            </ul>
+            <p class="mb-0 text-center">
+                Good places to dig: <a href="https://www.w3schools.com/cssref/index.php" target="_blank" rel="noopener">w3schools: CSS Reference</a> and <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model" target="_blank" rel="noopener">MDN: The box model</a>. Just make sure your page still validates.
+            </p>
+        </div>
+
+        <hr class="my-4">
+
+        <h2>Uploading your files (FileZilla &rarr; csci1210.com)</h2>
+
+        <div class="alert alert-warning">
+            <p>Make sure that your work is uploaded to the right place. Your URL should look like the following:</p>
+
+            <p id="url-warning" class="text-center">
+                <code>
+                    http://USERNAME.www.csci1210.com/homework/hw5/hw5.html
+                </code>
+            </p>
+            <p>Replace 'USERNAME' with your lowercase ETSU username. <strong>If the link doesn't take me to your page, I can't grade it.</strong></p>
+        </div>
+
+        <p>Once everything works locally, upload your whole project folder to the class server:</p>
+        <ol>
+            <li>Connect to the server in FileZilla using your course credentials.</li>
+            <li>
+                Navigate to <code>/homework/</code> on the remote (right-hand) side.
+            </li>
+            <li>
+                Either create a folder called <code>hw5</code> on the remote side OR name your folder on your device <code>hw5</code> that contains your files and upload the whole folder.
+            </li>
+            <li>
+                Upload <code>hw5.html</code>, the entire <code>css/</code> folder, and the entire <code>images/</code> folder &mdash; <strong>keep the same folder structure</strong> you have locally.
+            </li>
+            <li>
+                Visit your page at the corresponding csci1210.com URL and check it exactly like you did locally to verify that everything works.
+            </li>
+        </ol>
+
+        <div class="alert alert-warning">
+            <strong>Warning &mdash; check the server, not just your computer:</strong> A page that works when you double-click <code>hw5.html</code> on your own machine can still break once uploaded, usually because of a relative path issue or a missing file. If your page shows up with no styling at all, the <code>css/</code> folder probably didn't make it. Always do your final check by visiting the live csci1210.com URL, not just your local file.
+        </div>
+
+        <hr class="my-4">
+
+        <h2>Homework Checklist</h2>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Quick checklist</h5>
+                <p class="card-text text-muted">A high-level recap of everything above &mdash; check these off to make sure you've got everything.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-1">
+                    <label class="form-check-label" for="check-1">Completed the Box Model Autopsy and explained it in a comment in <code>style.css</code> (including the bonus question)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-2">
+                    <label class="form-check-label" for="check-2">Picked a palette with a real tool, and documented the hex codes and the contrast ratio (at least 4.5:1) in the comment block</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-3">
+                    <label class="form-check-label" for="check-3">Built the stat sheet: 6+ contenders, 4+ stats, <code>&lt;th&gt;</code> headings across the top and down the side, real data</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-4">
+                    <label class="form-check-label" for="check-4">Built the showdown grid using both <code>colspan</code> and <code>rowspan</code>, with every row's cell count adding up</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-5">
+                    <label class="form-check-label" for="check-5">Updated the title, header, nav (2&ndash;3 real links), and footer to fit your roster</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-6">
+                    <label class="form-check-label" for="check-6">Styled with element, class, and id selectors; <code>&lt;th&gt;</code> looks different from <code>&lt;td&gt;</code>; a class highlights some cells</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-7">
+                    <label class="form-check-label" for="check-7">Used <code>border-collapse</code>, cell padding, a block centered with <code>margin: 0 auto</code>, border shorthand <em>and</em> longhand, and a non-<code>solid</code> border style</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-8">
+                    <label class="form-check-label" for="check-8">Used the one-value, two-value, and four-value shorthand forms somewhere in your stylesheet</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-9">
+                    <label class="form-check-label" for="check-9">Commented your CSS sections and filled in the comment block at the top of <code>style.css</code></label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-10">
+                    <label class="form-check-label" for="check-10">Uploaded the whole <code>hw5</code> folder (<code>hw5.html</code>, <code>css/</code>, and <code>images/</code>) &mdash; same structure as local</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-11">
+                    <label class="form-check-label" for="check-11">Verified the live URL works and is error-free (checked the validator badges)</label>
+                </div>
+            </div>
+        </div>
+
+        <h2>My Screenshots</h2>
+        <p>See below for screenshots from my solution. Yours won't look anything like mine (that's the point!), but they should give you an idea of what finished tables look like. Click a screenshot to enlarge it. These were taken locally, so the validator badges don't show up &mdash; <strong>you should have both of those at the bottom-right</strong> once your page is uploaded.</p>
+        <div class="screenshots screenshots-dark">
+            <div id="screenshotsCarousel" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <figure class="mb-0">
+                            <img src="./images/stat-sheet.png" class="d-block" alt="Homework 5 | The Stat Sheet" data-bs-toggle="modal" data-bs-target="#imgModal" style="cursor:pointer">
+                            <figcaption>HW5 | The Stat Sheet</figcaption>
+                        </figure>
+                    </div>
+                    <div class="carousel-item">
+                        <figure class="mb-0">
+                            <img src="./images/showdown-grid.png" class="d-block" alt="Homework 5 | The Showdown Grid" data-bs-toggle="modal" data-bs-target="#imgModal" style="cursor:pointer">
+                            <figcaption>HW5 | The Showdown Grid</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#screenshotsCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#screenshotsCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#screenshotsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#screenshotsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="imgModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="max-width: 90vw;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imgModalLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img id="modalImg" src="" alt="" class="img-fluid d-block mx-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Submitting to D2L</h2>
+
+        <ol>
+            <li>
+                Verify that your page is live on the server and that it's error-free by right-clicking the icons at the bottom-right of the screen.
+                <ul>
+                    <li>
+                        Again, make SURE you're looking at the URL to make sure it's not a file path. See <a href="#url-warning">above</a> for what your URL should look like.
+                    </li>
+                    <li>
+                        Those icons come from the same validation script (<code>/js/w3c.js</code>) you used in HW3 and HW4, already included near the bottom of <code>hw5.html</code>. It only works once your page is uploaded; it won't do anything when you open the file locally.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Copy the URL for your page (<code>hw5.html</code>).
+            </li>
+            <li>
+                Paste the URL in the text drop box on D2L by the specified due date and time.
+            </li>
+        </ol>
+
+    </div>
+
+    <footer class="site-banner text-center py-3 mt-4">
+        <small>&copy; 2026 | William H. Rochelle | CSCI 1210</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Box model playground -- this page only -->
+    <script>
+        (function () {
+            var inputs = {
+                width: document.getElementById('bm-width'),
+                padding: document.getElementById('bm-padding'),
+                border: document.getElementById('bm-border'),
+                margin: document.getElementById('bm-margin')
+            };
+            if (!inputs.width) return;
+
+            var marginLayer = document.getElementById('bm-margin-layer');
+            var borderLayer = document.getElementById('bm-border-layer');
+            var paddingLayer = document.getElementById('bm-padding-layer');
+            var content = document.getElementById('bm-content');
+
+            function render() {
+                var w = +inputs.width.value;
+                var p = +inputs.padding.value;
+                var b = +inputs.border.value;
+                var m = +inputs.margin.value;
+
+                // each layer's padding stands in for one region of the box
+                marginLayer.style.padding = m + 'px';
+                borderLayer.style.padding = b + 'px';
+                paddingLayer.style.padding = p + 'px';
+                content.style.width = w + 'px';
+
+                // only label a band that's thick enough to hold the text
+                [[marginLayer, m], [borderLayer, b], [paddingLayer, p]].forEach(function (pair) {
+                    pair[0].firstElementChild.style.visibility = pair[1] >= 14 ? 'visible' : 'hidden';
+                });
+
+                ['width', 'padding', 'border', 'margin'].forEach(function (key) {
+                    document.getElementById('bm-' + key + '-out').textContent = inputs[key].value + 'px';
+                    document.getElementById('bm-css-' + key).textContent = inputs[key].value;
+                });
+
+                var box = w + (p * 2) + (b * 2);
+                document.getElementById('bm-math-box').textContent =
+                    w + ' + (' + p + ' × 2) + (' + b + ' × 2) = ' + box + 'px';
+                document.getElementById('bm-math-total').textContent =
+                    box + ' + (' + m + ' × 2) = ' + (box + m * 2) + 'px';
+            }
+
+            Object.keys(inputs).forEach(function (key) {
+                inputs[key].addEventListener('input', render);
+            });
+            render();
+        })();
+    </script>
+</body>
+
+</html>
