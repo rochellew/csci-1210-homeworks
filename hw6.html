@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW6: The resume Glow-Up</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="instructions.css">
+    <script src="theme.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg site-banner sticky-top">
+        <div class="container" style="max-width: 800px;">
+            <a class="navbar-brand fw-bold" href="./index.html">CSCI 1210 Homework</a>
+            <div class="d-flex align-items-center">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="./index.html">Home</a>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Homework
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="./hw3.html">HW3: Personal Gallery</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="./hw4.html">HW4: Trading Card Collection</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="./hw5.html">HW5: Stat Sheet Showdown</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="./hw6.html">HW6: The Resume Glow-Up</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <button id="theme-toggle" type="button" class="btn btn-sm rounded-circle ms-3 p-0 d-flex align-items-center justify-content-center" style="width: 1.75rem; height: 1.75rem;" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg id="theme-toggle-icon" viewBox="0 0 20 20" width="16" height="16" aria-hidden="true">
+                        <circle cx="10" cy="10" r="8.5" fill="#fff" stroke="#000" stroke-width="1"></circle>
+                        <path d="M10 1.5 A8.5 8.5 0 0 1 10 18.5 Z" fill="#000"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5" style="max-width: 800px;">
+
+        <h1 class="page-title">HW6: The Resume Glow-Up</h1>
+        <h5>CSCI-1210 Fall 2026</h5>
+        <p class="lead">Take the most boring document ever invented -- the resume -- and turn it into a web page somebody would actually <em>want</em> to scroll through.</p>
+
+        <div class="alert alert-info">
+            This one is the big finale for HTML and CSS fundamentals, so it pulls in pretty much everything we've done: images, links, tables, classes and ids, the box model, and color palettes. What's new this time: <strong>semantic elements</strong> (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;figure&gt;</code>, <code>&lt;footer&gt;</code>), <strong>pseudo-classes</strong>, <strong><code>display</code></strong>, and <strong><code>position</code></strong>. Still no Bootstrap -- every style on your page comes from CSS that <strong>you</strong> wrote.
+        </div>
+
+        <hr class="my-4">
+
+        <h2>1. Download the starter code</h2>
+        <p>
+            <a href="https://github.com/rochellew/csci-1210-homeworks/releases/download/hw6/hw6.zip">Download the starter code</a> off GitHub and unzip it -- this gives you the project folder you'll build everything in for the rest of these steps.
+        </p>
+        <div>
+            <p class="alert alert-warning">
+                Make sure that you unzip the folder to <code>/hw6</code> and store it somewhere that makes sense, right next to your <code>hw3</code>, <code>hw4</code>, and <code>hw5</code> folders.
+            </p>
+        </div>
+
+        <h2>2. Pick your applicant</h2>
+        <p>
+            Here's the twist: the resume doesn't have to be <em>yours</em>. You've got two options:
+        </p>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Option A &mdash; The Real Deal</h5>
+                <p class="card-text mb-0">
+                    Build a resume for yourself -- the you of today, or the you of five years from now with the degree and the dream job. If you go this route, you walk away with something you can actually keep updating and send to people. Future-you will be grateful.
+                </p>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Option B &mdash; The Character Application</h5>
+                <p class="card-text">
+                    Build a resume for a character applying for a job they are hilariously wrong (or suspiciously perfect) for. Write it completely straight, like they really want this job. Some ideas:
+                </p>
+                <ul class="mb-0">
+                    <li>Bowser, applying to be a Royal Princess Security Consultant</li>
+                    <li>Darth Vader, applying for Director of Human Resources ("strong track record of employee <em>motivation</em>")</li>
+                    <li>Gandalf, applying to run fireworks for children's birthday parties</li>
+                    <li>The Kool-Aid Man, applying for Structural Engineer</li>
+                    <li>Your cat, applying for Head of Household Security (Experience: <em>staring at the door for 9 hours</em>)</li>
+                    <li>A Minecraft Creeper, applying for Demolition Foreman</li>
+                </ul>
+            </div>
+        </div>
+
+        <p>
+            Either way, your applicant needs real content in every section: <strong>at least 3 jobs</strong> (or job-like things -- quests, campaigns, clubs, volunteering), some education or training, a set of skills, and one section that's all personality (see step 6).
+        </p>
+
+        <div class="alert alert-warning">
+            <strong>Warning &mdash; this goes on the public internet:</strong> Your page will live on csci1210.com where anyone can find it. If you go with Option A, <strong>do not</strong> put your phone number, home address, birthday, or anything else you wouldn't want publicly-accessible. When in doubt, leave it out -- or make something up (e.g., exampleemail@fake.com).
+        </div>
+
+        <h2>3. What you're given</h2>
+        <p>Your project folder already contains a starter template:</p>
+        <ul class="list-group mb-4">
+            <li class="list-group-item"><code>hw6.html</code> -- a complete (and extremely beige) resume for one <strong>Dr. Jordan Placeholder</strong>. It has a header with a photo, a nav bar, a few sections, a couple of jobs, and a footer. It works. It's also built <em>entirely</em> out of <code>&lt;div&gt;</code>s, which is the problem you'll fix in step 4.</li>
+            <li class="list-group-item"><code>css/style.css</code> -- your stylesheet, already linked from <code>hw6.html</code>. It has the required comment block at the top and a handful of starter rules that make Dr. Placeholder look... fine. Not good. Fine.</li>
+            <li class="list-group-item"><code>images/</code> -- a placeholder headshot. Swap it for your own photo, an avatar, or a picture of your character. Optimize it in GIMP first (same as <a href="./hw3.html">HW3</a>).</li>
+        </ul>
+
+        <h2>4. Div Detox</h2>
+        <p>
+            Before you write anything new, open <code>hw6.html</code> in VS Code and look at how Dr. Placeholder's page is built. You'll see a lot of this:
+        </p>
+        <pre class="code-block"><code>&lt;div class="header"&gt;
+                &lt;div class="photo"&gt;
+                &lt;img src="images/headshot.jpg" alt="Dr. Placeholder"&gt;
+                &lt;div class="caption"&gt;Dr. Placeholder, looking employable&lt;/div&gt;
+                &lt;/div&gt;
+                ...
+                &lt;/div&gt;
+
+                &lt;div class="nav"&gt; ... &lt;/div&gt;
+
+                &lt;div class="section" id="experience"&gt;
+                &lt;div class="job"&gt; ... &lt;/div&gt;
+                &lt;div class="job"&gt; ... &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class="footer"&gt; ... &lt;/div&gt;</code></pre>
+        <p>
+            This is lovingly referred to as <strong>div soup</strong>. The browser has no idea which of those boxes is the header, which is navigation, and which is a job -- they're all just "a box." Your job is to fix that:
+        </p>
+        <ol>
+            <li><strong>Predict.</strong> Go through the file and write down which semantic element each <code>&lt;div&gt;</code> <em>should</em> be. (The cheat sheet at the bottom of this page will help.) Then predict: once you swap them, will the page look any different in the browser?</li>
+            <li><strong>Swap.</strong> Replace each one with the right semantic element. Keep the <code>class</code> and <code>id</code> attributes exactly as they are for now. Don't forget the closing tags!</li>
+            <li><strong>Check.</strong> Save and refresh. Most of the page looks exactly the same... but <em>something</em> broke. Find it. Then open <code>css/style.css</code> and figure out why that rule stopped working when the others didn't.</li>
+            <li><strong>Fix &amp; Explain.</strong> Fix the broken rule. Then, right above it in <code>css/style.css</code>, write a CSS comment with your prediction, what actually happened, and <em>why</em> -- in your own words.</li>
+        </ol>
+
+        <div class="alert alert-info">
+            <strong>Bonus question:</strong> If the page mostly looked the same before and after, why bother? Name <strong>two</strong> people (or programs) that can tell the difference between your page and Dr. Placeholder's, and what they do with it. Add your answer to the same comment.
+        </div>
+
+        <p>
+            Once you've written your comment, Dr. Placeholder is fired. Replace everything with your applicant. Just keep the comment.
+        </p>
+
+        <h2>5. Lock in a color palette</h2>
+        <p>
+            Same deal as <a href="./hw5.html">HW5</a>: pick a real palette with <a href="https://color.adobe.com/create/color-wheel/" target="_blank" rel="noopener">Adobe Color</a> or <a href="https://www.paletton.com/" target="_blank" rel="noopener">Paletton</a> <em>before</em> you start writing colors, then check it with the <a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">WebAIM Contrast Checker</a>.
+        </p>
+        <p>
+            Let your palette match your applicant. A Bowser resume in pastel pink is a choice (a funny one, honestly). A "real you" resume for a software job probably wants something calmer than a Bowser-themed page.
+        </p>
+
+        <div class="alert alert-info">
+            <strong>Requirement &mdash; document your palette:</strong>
+            <p class="mb-0">
+                In the comment block at the top of <code>css/style.css</code>, list the <strong>hex codes</strong> for your palette (3&ndash;5 of them) and where each one gets used, plus the <strong>contrast ratio</strong> you measured for your main body text against its background. Still <strong>4.5:1</strong> or better, still no exceptions.
+            </p>
+        </div>
+
+        <h2>6. Build the resume (<code>hw6.html</code>)</h2>
+        <p>
+            Update the page <code>&lt;title&gt;</code> first (nobody wants a browser tab that says "Dr. Placeholder"), then build out each piece of the page:
+        </p>
+
+        <div class="alert alert-info">
+            <strong>Requirement &mdash; the page structure:</strong>
+            <ul class="mb-0 mt-2">
+                <li>A <code>&lt;header&gt;</code> with your applicant's <strong>name</strong>, a one-line <strong>tagline</strong> (the job they want, or a motto), and a <strong>headshot</strong> inside a <code>&lt;figure&gt;</code> with a <code>&lt;figcaption&gt;</code></li>
+                <li>A <code>&lt;nav&gt;</code> with links that <strong>jump to each section on the page</strong> (see the cheat sheet on in-page links below), plus at least <strong>one external link</strong> -- a portfolio, LinkedIn, GitHub, or your character's wiki page</li>
+                <li>At least <strong>4 <code>&lt;section&gt;</code>s</strong>, each with a heading and an <code>id</code> your nav can jump to:
+                    <ul>
+                        <li><strong>About</strong> -- a short paragraph pitching your applicant</li>
+                        <li><strong>Experience</strong> -- at least <strong>3 jobs</strong>, each one its own <code>&lt;article&gt;</code> with a job title, where, when, and a list of accomplishments</li>
+                        <li><strong>Education &amp; Skills</strong> -- schools, training, certifications, and what they're good at</li>
+                        <li><strong>A wildcard section</strong> -- this is where the personality goes. Awards, hobbies, testimonials from coworkers, "Known Weaknesses," a list of references available upon request (from the dragon)</li>
+                    </ul>
+                </li>
+                <li>One <strong>table</strong> somewhere that makes sense -- a skill rating chart, a list of courses with grades, a weekly availability schedule, a "me vs. other applicants" comparison. Use <code>&lt;th&gt;</code> for the headings, like in HW5.</li>
+                <li>A <code>&lt;footer&gt;</code> with a contact link (<code>mailto:</code> -- see below) and a copyright line. Leave the validator <code>&lt;script&gt;</code> where it is.</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-secondary">
+            <strong>Note &mdash; <code>&lt;section&gt;</code> vs. <code>&lt;article&gt;</code>:</strong> These two get mixed up constantly. A <code>&lt;section&gt;</code> is a <em>chapter</em> of your page -- a themed chunk with its own heading, like "Experience." An <code>&lt;article&gt;</code> is a self-contained <em>thing</em> that would still make sense if you cut it out and pasted it somewhere else, like one single job. So your Experience section holds three articles, not the other way around. A good test: would it make sense on its own in a news feed? If yes, it's an article.
+        </div>
+
+        <div class="alert alert-light border">
+            <strong>Tip &mdash; you can still use <code>&lt;div&gt;</code>s:</strong> Semantic elements didn't make <code>&lt;div&gt;</code> illegal. If you need a box purely for styling -- to group two things so you can put a border around them, say -- a <code>&lt;div&gt;</code> is still the right tool. The rule of thumb: reach for a semantic element first, and use a <code>&lt;div&gt;</code> when none of them actually <em>mean</em> what you're building.
+        </div>
+
+        <h2>7. Style it (<code>css/style.css</code>)</h2>
+        <p>
+            Now make it look like someone would hire this person. How it looks is completely up to you, but your stylesheet needs to show off the following:
+        </p>
+
+        <div class="alert alert-info">
+            <strong>Requirement &mdash; the usual suspects:</strong>
+            <ul class="mb-0 mt-2">
+                <li>The comment block at the top of <code>style.css</code>, filled in (including your palette and contrast ratio from step 5)</li>
+                <li>Comments explaining what each section of your CSS is for</li>
+                <li>Rules that use <strong>element</strong>, <strong>class</strong>, and <strong>id</strong> selectors -- and at least a few that target your new semantic elements directly (<code>header</code>, <code>nav</code>, <code>article</code>, ...)</li>
+                <li>Only colors from your documented palette</li>
+                <li>A variety of <strong>text</strong> properties, and at least one <strong>background image</strong> somewhere on the page</li>
+                <li>Your table styled the HW5 way: <code>border-collapse</code>, padded cells, and <code>&lt;th&gt;</code> cells that look different from <code>&lt;td&gt;</code> cells</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-info">
+            <strong>Requirement &mdash; box model &amp; <code>display</code>:</strong>
+            <ul class="mb-0 mt-2">
+                <li>Your resume sits in a centered column: give it a <code>max-width</code> and center it with <code>margin: 0 auto;</code> so it doesn't stretch edge-to-edge on a big monitor</li>
+                <li>Each job <code>&lt;article&gt;</code> is visibly its own box -- some combination of <strong>padding</strong>, <strong>border</strong>, <strong>margin</strong>, and background</li>
+                <li>Change the <code>display</code> of at least <strong>two</strong> elements from their default. For example: nav links as <code>inline-block</code> so they can take padding like buttons; a skills list where each <code>&lt;li&gt;</code> is an <code>inline-block</code> "chip" instead of a bullet point; an image set to <code>block</code> so you can center it</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-info">
+            <strong>Requirement &mdash; <code>position</code>:</strong>
+            <ul class="mb-0 mt-2">
+                <li><strong>The stamp.</strong> Put a little "stamp" or badge on your resume using a <code>position: relative</code> parent and a <code>position: absolute</code> child. <span class="text-uppercase fw-bold">Hired!</span> across the header, an "Employee of the Month" badge in the corner of a job, an "Available Now" sticker on the headshot, a "Certified Dragon-Free" seal -- whatever fits. Play with the position playground below first.</li>
+                <li><strong>The nav that won't leave.</strong> Make your <code>&lt;nav&gt;</code> stay on screen while you scroll, using <code>position: fixed</code> (or <code>position: sticky</code>, if you want to try it -- see the cheat sheet). Then make sure it isn't covering up the top of your content.</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-info">
+            <strong>Requirement &mdash; pseudo-classes:</strong>
+            <ul class="mb-0 mt-2">
+                <li>At least <strong>three different</strong> pseudo-classes somewhere in your sheet</li>
+                <li>One of them must be <code>:hover</code> on something that <strong>isn't</strong> a link -- a job article that lights up, a skill chip that changes color, a table row that highlights</li>
+                <li>Your links need to look like links, and look different when you hover over them. If you style <code>:link</code> and <code>:visited</code>, remember the order (see the cheat sheet)</li>
+                <li>Use at least one of the "which child is it?" pseudo-classes: <code>:first-child</code>, <code>:last-child</code>, or <code>:nth-child()</code>. Zebra-striping your table rows with <code>tr:nth-child(even)</code> is a classic.</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-warning">
+            <strong>Warning &mdash; the fixed nav eats your content:</strong> <code>position: fixed</code> pulls an element out of the normal flow, so the rest of the page slides up underneath it like it isn't there. The first thing on your page will end up hiding <em>behind</em> your nav. The fix is to leave room for it: give <code>body</code> some <code>padding-top</code> at least as tall as your nav. Same thing when you jump to a section -- if the heading is hiding under the nav, that's why.
+        </div>
+
+        <h2>8. The Hiring Committee</h2>
+        <p>
+            Open <code>hw6.html</code> in your browser, then go find a roommate, a friend, or a family member -- anyone who isn't you. Give them <strong>30 seconds</strong> with your page and then close the laptop. Ask them:
+        </p>
+        <ul>
+            <li>What's this person's name?</li>
+            <li>What job do they want?</li>
+            <li>Name one thing they're good at.</li>
+            <li>How would you contact them?</li>
+        </ul>
+        <p>
+            If they can't answer all four, your page is burying the important stuff. Real recruiters spend about that long on a resume before deciding, so this is genuinely how it works. Then test the boring parts yourself:
+        </p>
+        <ul>
+            <li>Click every nav link. Does each one land on the right section, with the heading <em>not</em> hiding under the nav?</li>
+            <li>Hover over everything. Does something respond that isn't a link?</li>
+            <li>Scroll all the way down. Does the nav stick around? Does your stamp stay where it belongs?</li>
+            <li>Resize the window. Does the centered column still hold together?</li>
+            <li>Does your contact link actually open an email?</li>
+        </ul>
+
+        <hr class="my-4">
+
+        <h3>About the tools you're using</h3>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Semantic element cheat sheet</h5>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Element</th>
+                            <th>What it means</th>
+                            <th>On your resume</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>&lt;header&gt;</code></td>
+                            <td>Intro content for the page (or for a section/article)</td>
+                            <td>Name, tagline, headshot</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;nav&gt;</code></td>
+                            <td>A block of major navigation links</td>
+                            <td>Your jump-to-section links</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;section&gt;</code></td>
+                            <td>A themed chunk of the page, usually with its own heading</td>
+                            <td>About, Experience, Education, ...</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;article&gt;</code></td>
+                            <td>Something self-contained that makes sense on its own</td>
+                            <td>One job</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;figure&gt;</code></td>
+                            <td>An image (or chart, or code sample) that goes with the content</td>
+                            <td>The headshot</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;figcaption&gt;</code></td>
+                            <td>The caption for a <code>&lt;figure&gt;</code> -- first or last thing inside it</td>
+                            <td>"Bowser, pictured before the incident"</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;footer&gt;</code></td>
+                            <td>Closing info for the page (or for a section/article)</td>
+                            <td>Contact info, copyright</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="card-text mb-0">
+                    Out of the box, every one of these acts like a <code>&lt;div&gt;</code> -- a plain block with no styling. The difference is entirely in what they <em>tell</em> the browser, screen readers, and search engines. Full list: <a href="https://www.w3schools.com/html/html5_semantic_elements.asp" target="_blank" rel="noopener">w3schools: HTML Semantic Elements</a>.
+                </p>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Linking to a spot on the same page</h5>
+                <p class="card-text">
+                    Give the destination an <code>id</code>, then point a link at it with a <code>#</code> in front. No page name needed:
+                </p>
+                <pre class="code-block"><code>&lt;nav&gt;
+                        &lt;a href="#experience"&gt;Experience&lt;/a&gt;
+                        &lt;/nav&gt;
+
+                        ...
+
+                        &lt;section id="experience"&gt;
+                        &lt;h2&gt;Experience&lt;/h2&gt;
+                        ...
+                        &lt;/section&gt;</code></pre>
+                <p class="card-text">
+                    Click the link and the browser scrolls straight to the element with that id. (Every "see above" link on these instruction pages works exactly this way.)
+                </p>
+                <p class="card-text mb-0">
+                    For your contact link, <code>mailto:</code> opens the visitor's email app with your address already filled in: <code>&lt;a href="mailto:zxyz99@etsu.edu"&gt;Email me&lt;/a&gt;</code>
+                </p>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><code>display</code> cheat sheet</h5>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Value</th>
+                            <th>What it does</th>
+                            <th>Default for</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>block</code></td>
+                            <td>Starts on a new line and stretches as wide as its parent. Respects <code>width</code>, <code>height</code>, and all margin/padding.</td>
+                            <td><code>div</code>, <code>p</code>, <code>h1</code>&ndash;<code>h6</code>, <code>ul</code>, <code>li</code>, <code>section</code>, ...</td>
+                        </tr>
+                        <tr>
+                            <td><code>inline</code></td>
+                            <td>Sits in the line of text, only as wide as its content. <strong>Ignores</strong> <code>width</code>, <code>height</code>, and top/bottom margin.</td>
+                            <td><code>a</code>, <code>span</code>, <code>strong</code>, <code>em</code>, <code>img</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>inline-block</code></td>
+                            <td>The best of both: sits in a line like <code>inline</code>, but takes <code>width</code>, <code>height</code>, and padding like <code>block</code>.</td>
+                            <td><code>button</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>none</code></td>
+                            <td>Gone. Not hidden -- removed from the page entirely, and it takes up no space.</td>
+                            <td>The <code>&lt;head&gt;</code> and everything in it</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="card-text mb-0">
+                    If you've ever put padding on a link and watched it overlap the line above instead of pushing it away, that's <code>inline</code> ignoring you. Switch it to <code>inline-block</code>.
+                </p>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><code>position</code> cheat sheet</h5>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Value</th>
+                            <th>Still in the flow?</th>
+                            <th><code>top</code> / <code>left</code> / etc. measured from...</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>static</code></td>
+                            <td>Yes</td>
+                            <td>Nothing -- offsets are <strong>ignored</strong>. This is the default.</td>
+                        </tr>
+                        <tr>
+                            <td><code>relative</code></td>
+                            <td>Yes (its old spot stays reserved)</td>
+                            <td>Where it <em>would</em> have been</td>
+                        </tr>
+                        <tr>
+                            <td><code>absolute</code></td>
+                            <td>No</td>
+                            <td>The nearest ancestor that has a <code>position</code> other than <code>static</code> (or the page, if there isn't one)</td>
+                        </tr>
+                        <tr>
+                            <td><code>fixed</code></td>
+                            <td>No</td>
+                            <td>The browser window. It doesn't move when you scroll.</td>
+                        </tr>
+                        <tr>
+                            <td><code>sticky</code></td>
+                            <td>Yes, until you scroll past it</td>
+                            <td>Acts <code>relative</code> until it hits the offset you gave it (like <code>top: 0</code>), then sticks there like <code>fixed</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="card-text mb-0">
+                    The relative-parent / absolute-child combo is the one to remember: <code>position: relative</code> with no offsets doesn't move the parent at all, it just turns it into the "anchor" that its absolute children measure from. (The nav bar at the top of <em>this</em> page is <code>sticky</code>, by the way. Scroll and watch it.)
+                </p>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Position playground</h5>
+                <p class="card-text">
+                    Pick a <code>position</code> for the stamp, drag the offsets around, and toggle whether the resume is its anchor. Pay attention to what happens to the text underneath the stamp, and to where the stamp goes when the resume <em>isn't</em> positioned.
+                </p>
+
+                <div class="pos-demo">
+                    <div class="pos-controls">
+                        <span class="pos-heading">Stamp's <code>position</code></span>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="pos-mode" id="pos-static" value="static" checked>
+                            <label class="form-check-label" for="pos-static"><code>static</code></label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="pos-mode" id="pos-relative" value="relative">
+                            <label class="form-check-label" for="pos-relative"><code>relative</code></label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="pos-mode" id="pos-absolute" value="absolute">
+                            <label class="form-check-label" for="pos-absolute"><code>absolute</code></label>
+                        </div>
+
+                        <label class="pos-heading" for="pos-top">top &mdash; <output id="pos-top-out">20px</output></label>
+                        <input type="range" class="form-range" id="pos-top" min="0" max="140" step="5" value="20">
+
+                        <label class="pos-heading" for="pos-left">left &mdash; <output id="pos-left-out">180px</output></label>
+                        <input type="range" class="form-range" id="pos-left" min="0" max="320" step="10" value="180">
+
+                        <span class="pos-heading">Anchor</span>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="pos-anchor" checked>
+                            <label class="form-check-label" for="pos-anchor">resume has <code>position: relative</code></label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="pos-stage" id="pos-parent">
+                            <h6>Bowser Koopa</h6>
+                            <span class="pos-stamp" id="pos-stamp">Hired!</span>
+                            <p class="mt-2 mb-1"><strong>Seeking:</strong> Royal Princess Security Consultant</p>
+                            <p class="mb-0">Over 35 years of hands-on experience with castle security, princess logistics, and lava-adjacent facilities management. Excellent at holding a position.</p>
+                        </div>
+                        <p class="pos-note mt-2 mb-0" id="pos-note"></p>
+                    </div>
+                </div>
+
+                <pre class="code-block mt-3 mb-0"><code>.resume {
+                        <span id="pos-css-anchor">position: relative;</span>
+                        }
+
+                        .stamp {
+                        position: <span id="pos-css-mode">static</span>;
+                        top: <span id="pos-css-top">20</span>px;
+                        left: <span id="pos-css-left">180</span>px;
+                        }</code></pre>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Pseudo-class cheat sheet</h5>
+                <p class="card-text">
+                    A pseudo-class goes on the end of a selector with a colon, and matches an element only when it's in a certain <em>state</em> or <em>spot</em>:
+                </p>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Pseudo-class</th>
+                            <th>Matches when...</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>a:link</code></td>
+                            <td>The link hasn't been visited yet</td>
+                        </tr>
+                        <tr>
+                            <td><code>a:visited</code></td>
+                            <td>The link has been visited</td>
+                        </tr>
+                        <tr>
+                            <td><code>:hover</code></td>
+                            <td>The mouse is over it -- works on <strong>any</strong> element, not just links</td>
+                        </tr>
+                        <tr>
+                            <td><code>:active</code></td>
+                            <td>It's being clicked, right this instant</td>
+                        </tr>
+                        <tr>
+                            <td><code>:focus</code></td>
+                            <td>It's selected with the keyboard (Tab key) or clicked into</td>
+                        </tr>
+                        <tr>
+                            <td><code>:first-child</code> / <code>:last-child</code></td>
+                            <td>It's the first / last element inside its parent</td>
+                        </tr>
+                        <tr>
+                            <td><code>:nth-child(even)</code></td>
+                            <td>It's the 2nd, 4th, 6th... element inside its parent. Also takes <code>odd</code> or a number, like <code>:nth-child(3)</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pre class="code-block"><code>/* every job lifts a little when you hover it */
+                        article.job:hover {
+                        background-color: #fff3d6;
+                        border-color: #b5651d;
+                        }
+
+                        /* no extra space below the very last job */
+                        article.job:last-child {
+                        margin-bottom: 0;
+                        }</code></pre>
+                <p class="card-text mb-0">
+                    <strong>Link order matters:</strong> if you style more than one link state, write them in the order <code>:link</code>, <code>:visited</code>, <code>:hover</code>, <code>:active</code>. They all have the same specificity, so the last one written wins -- get them out of order and your hover effect quietly stops working on visited links. The classic way to remember it: <strong>L</strong>o<strong>V</strong>e <strong>HA</strong>te.
+                </p>
+            </div>
+        </div>
+
+        <div class="alert alert-info">
+            <h5 class="card-title">Want to go further?</h5>
+            <p class="card-text mb-2">
+                Everything required above came out of lecture. If you want this to be the resume you actually send people, a few things worth trying:
+            </p>
+            <ul>
+                <li><code>html { scroll-behavior: smooth; }</code> -- your nav links glide to their section instead of teleporting</li>
+                <li><code>:target</code> -- styles whichever section your nav just jumped to, so you can flash it like the "see above" links on this page</li>
+                <li><code>transition</code> -- makes your <code>:hover</code> changes fade in instead of snapping</li>
+                <li><code>border-radius</code> and <code>box-shadow</code> for a softer, more modern look</li>
+                <li><code>@media print { ... }</code> -- rules that only apply when someone prints your page. Hide the nav with <code>display: none</code> and you've got a printable paper resume for free</li>
+            </ul>
+            <p class="mb-0 text-center">
+                Good places to dig: <a href="https://www.w3schools.com/css/css_pseudo_classes.asp" target="_blank" rel="noopener">w3schools: CSS Pseudo-classes</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="_blank" rel="noopener">MDN: position</a>. Just make sure your page still validates.
+            </p>
+        </div>
+
+        <hr class="my-4">
+
+        <h2>Uploading your files (FileZilla &rarr; csci1210.com)</h2>
+
+        <div class="alert alert-warning">
+            <p>Make sure that your work is uploaded to the right place. Your URL should look like the following:</p>
+
+            <p id="url-warning" class="text-center">
+                <code>
+                    http://USERNAME.www.csci1210.com/homework/hw6/hw6.html
+                </code>
+            </p>
+            <p>Replace 'USERNAME' with your lowercase ETSU username. <strong>If the link doesn't take me to your page, I can't grade it.</strong></p>
+        </div>
+
+        <p>Once everything works locally, upload your whole project folder to the class server:</p>
+        <ol>
+            <li>Connect to the server in FileZilla using your course credentials.</li>
+            <li>
+                Navigate to <code>/homework/</code> on the remote (right-hand) side.
+            </li>
+            <li>
+                Either create a folder called <code>hw6</code> on the remote side OR name your folder on your device <code>hw6</code> that contains your files and upload the whole folder.
+            </li>
+            <li>
+                Upload <code>hw6.html</code>, the entire <code>css/</code> folder, and the entire <code>images/</code> folder &mdash; <strong>keep the same folder structure</strong> you have locally.
+            </li>
+            <li>
+                Visit your page at the corresponding csci1210.com URL and check it exactly like you did locally to verify that everything works.
+            </li>
+        </ol>
+
+        <div class="alert alert-warning">
+            <strong>Warning &mdash; check the server, not just your computer:</strong> A page that works when you double-click <code>hw6.html</code> on your own machine can still break once uploaded, usually because of a relative path issue or a missing file. If your page shows up with no styling at all, the <code>css/</code> folder probably didn't make it. Always do your final check by visiting the live csci1210.com URL, not just your local file.
+        </div>
+
+        <hr class="my-4">
+
+        <h2>Homework Checklist</h2>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Quick checklist</h5>
+                <p class="card-text text-muted">A high-level recap of everything above &mdash; check these off to make sure you've got everything.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-1">
+                    <label class="form-check-label" for="check-1">Completed the Div Detox: swapped every <code>&lt;div&gt;</code> for the right semantic element, fixed the broken rule, and explained it in a comment in <code>style.css</code> (including the bonus question)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-2">
+                    <label class="form-check-label" for="check-2">Picked a palette with a real tool, and documented the hex codes and the contrast ratio (at least 4.5:1) in the comment block</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-3">
+                    <label class="form-check-label" for="check-3">Built a <code>&lt;header&gt;</code> with a name, tagline, and an optimized headshot in a <code>&lt;figure&gt;</code> with a <code>&lt;figcaption&gt;</code></label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-4">
+                    <label class="form-check-label" for="check-4">Built a <code>&lt;nav&gt;</code> that jumps to every section, plus at least one external link</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-5">
+                    <label class="form-check-label" for="check-5">Built 4+ <code>&lt;section&gt;</code>s (About, Experience, Education &amp; Skills, wildcard), with 3+ jobs as <code>&lt;article&gt;</code>s</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-6">
+                    <label class="form-check-label" for="check-6">Included a styled table and a <code>&lt;footer&gt;</code> with a <code>mailto:</code> link -- and no personal info you wouldn't want public</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-7">
+                    <label class="form-check-label" for="check-7">Centered the page with <code>max-width</code> and <code>margin: 0 auto</code>, boxed each job, and changed the <code>display</code> of at least two elements</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-8">
+                    <label class="form-check-label" for="check-8">Added a stamp with a <code>relative</code> parent and an <code>absolute</code> child, and a <code>fixed</code> (or <code>sticky</code>) nav that doesn't cover your content</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-9">
+                    <label class="form-check-label" for="check-9">Used 3+ pseudo-classes, including <code>:hover</code> on a non-link and one of <code>:first-child</code> / <code>:last-child</code> / <code>:nth-child()</code></label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-10">
+                    <label class="form-check-label" for="check-10">Styled with element, class, and id selectors, using only your palette's colors, text properties, and a background image; commented your CSS sections</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-11">
+                    <label class="form-check-label" for="check-11">Passed the Hiring Committee test (somebody else could answer all four questions)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-12">
+                    <label class="form-check-label" for="check-12">Uploaded the whole <code>hw6</code> folder (<code>hw6.html</code>, <code>css/</code>, and <code>images/</code>) &mdash; same structure as local</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check-13">
+                    <label class="form-check-label" for="check-13">Verified the live URL works and is error-free (checked the validator badges)</label>
+                </div>
+            </div>
+        </div>
+
+        <h2>My Screenshots</h2>
+        <p>See below for screenshots from my solution -- Mahito, applying to be a wellness coach. Yours won't look anything like mine (that's the point!), but they should give you an idea of what a finished resume looks like. Each one has the mouse hovering over something, so you can see the <code>:hover</code> effects in action. Click a screenshot to enlarge it. These were taken locally, so the validator badges don't show up &mdash; <strong>you should have both of those at the bottom-right</strong> once your page is uploaded.</p>
+        <div class="screenshots screenshots-dark">
+            <div id="screenshotsCarousel" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <figure class="mb-0">
+                            <img src="./images/resume-header.png" class="d-block" alt="Homework 6 | Header, stamp, and fixed nav (hovering a nav link)" data-bs-toggle="modal" data-bs-target="#imgModal" style="cursor:pointer">
+                            <figcaption>HW6 | Header, stamp, and fixed nav (hovering a nav link)</figcaption>
+                        </figure>
+                    </div>
+                    <div class="carousel-item">
+                        <figure class="mb-0">
+                            <img src="./images/resume-experience.png" class="d-block" alt="Homework 6 | Job articles (hovering the middle one)" data-bs-toggle="modal" data-bs-target="#imgModal" style="cursor:pointer">
+                            <figcaption>HW6 | Job articles (hovering the middle one) &mdash; note the nav is still on screen</figcaption>
+                        </figure>
+                    </div>
+                    <div class="carousel-item">
+                        <figure class="mb-0">
+                            <img src="./images/resume-skills.png" class="d-block" alt="Homework 6 | Skill chips (hovering one) and a zebra-striped table" data-bs-toggle="modal" data-bs-target="#imgModal" style="cursor:pointer">
+                            <figcaption>HW6 | Inline-block skill chips (hovering one) and a zebra-striped table</figcaption>
+                        </figure>
+                    </div>
+                    <div class="carousel-item">
+                        <figure class="mb-0">
+                            <img src="./images/resume-testimonials.png" class="d-block" alt="Homework 6 | Wildcard section and footer (hovering the contact link)" data-bs-toggle="modal" data-bs-target="#imgModal" style="cursor:pointer">
+                            <figcaption>HW6 | Wildcard section and footer (hovering the contact link)</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#screenshotsCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#screenshotsCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#screenshotsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#screenshotsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#screenshotsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#screenshotsCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="imgModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="max-width: 90vw;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imgModalLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img id="modalImg" src="" alt="" class="img-fluid d-block mx-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Submitting to D2L</h2>
+
+        <ol>
+            <li>
+                Verify that your page is live on the server and that it's error-free by right-clicking the icons at the bottom-right of the screen.
+                <ul>
+                    <li>
+                        Again, make SURE you're looking at the URL to make sure it's not a file path. See <a href="#url-warning">above</a> for what your URL should look like.
+                    </li>
+                    <li>
+                        Those icons come from the same validation script (<code>/js/w3c.js</code>) you've used since HW3, already included near the bottom of <code>hw6.html</code>. It only works once your page is uploaded; it won't do anything when you open the file locally.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Copy the URL for your page (<code>hw6.html</code>).
+            </li>
+            <li>
+                Paste the URL in the text drop box on D2L by the specified due date and time.
+            </li>
+        </ol>
+
+    </div>
+
+    <footer class="site-banner text-center py-3 mt-4">
+        <small>&copy; 2026 | William H. Rochelle | CSCI 1210</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Position playground -- this page only -->
+    <script>
+        (function () {
+            var stamp = document.getElementById('pos-stamp');
+            if (!stamp) return;
+
+            var parent = document.getElementById('pos-parent');
+            var anchor = document.getElementById('pos-anchor');
+            var topInput = document.getElementById('pos-top');
+            var leftInput = document.getElementById('pos-left');
+            var note = document.getElementById('pos-note');
+
+            var notes = {
+                'static': 'static is the default. top and left do nothing at all -- the stamp just sits in the normal flow, between the name and the text.',
+                'relative': 'Nudged away from where it would normally be. Notice the gap it left behind: the text still acts like the stamp is in its old spot.',
+                'absolute-anchored': 'Pulled out of the flow (the text closed up the gap), and measured from the corner of the résumé, its nearest positioned ancestor.',
+                'absolute-loose': 'The résumé isn\'t positioned anymore, so the stamp climbed up until it found an ancestor that is -- here, the card around this whole demo. On your page with nothing positioned, it would measure from the page itself.'
+            };
+
+            function render() {
+                var mode = document.querySelector('input[name="pos-mode"]:checked').value;
+                var t = topInput.value;
+                var l = leftInput.value;
+
+                // the playground's card is already position: relative (Bootstrap),
+                // so an unanchored absolute stamp escapes to the card's corner
+                parent.style.position = anchor.checked ? 'relative' : 'static';
+                parent.classList.toggle('is-anchor', anchor.checked && mode === 'absolute');
+
+                stamp.style.position = mode;
+                stamp.style.top = t + 'px';
+                stamp.style.left = l + 'px';
+
+                document.getElementById('pos-top-out').textContent = t + 'px';
+                document.getElementById('pos-left-out').textContent = l + 'px';
+                document.getElementById('pos-css-mode').textContent = mode;
+                document.getElementById('pos-css-top').textContent = t;
+                document.getElementById('pos-css-left').textContent = l;
+                document.getElementById('pos-css-anchor').textContent =
+                    anchor.checked ? 'position: relative;' : '/* no position set */';
+
+                var key = mode === 'absolute' ? (anchor.checked ? 'absolute-anchored' : 'absolute-loose') : mode;
+                note.textContent = notes[key];
+            }
+
+            document.querySelectorAll('.pos-controls input').forEach(function (input) {
+                input.addEventListener('input', render);
+                input.addEventListener('change', render);
+            });
+            render();
+        })();
+    </script>
+</body>
+
+</html>
